@@ -1,8 +1,12 @@
-@custom-variant dark (&:is(.dark *));
-
 :root {
   /* Base layout width (overridden by breakpoints) */
   --layout-base-width: 1440px;
+
+  /* Typography tokens compatible with Tailwind base scale */
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
 
   --font-size: 16px;
   --background: #ffffff;
@@ -101,7 +105,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-@theme inline {
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -142,13 +146,15 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Base resets that were previously provided via Tailwind preflight */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--color-border);
+    outline-color: var(--color-ring);
   }
 
   body {
-    @apply text-foreground;
+    color: var(--color-foreground);
     background-color: var(--color-grey-normal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
