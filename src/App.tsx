@@ -9,116 +9,45 @@ import imgImage24 from "./assets/f5f3648e3c8bf02d20f4eebcc327b882c530c8e0.png";
 import imgImage33 from "./assets/71366fd793e8dcc9f9d377373114ab8fc484685c.png";
 import imgImage19 from "./assets/dffa3d2509ebe6453bde8f2706e53406fb383812.png";
 import imgImg26161 from "./assets/428c04dfe841133da2e66210a87c2e0aa90ad763.png";
-import imgLogoDark1 from "./assets/c0ff9b06a95d08b684f7bb2cd6d1ffad12acf27c.png";
+import imgArrow from "./assets/arrow.png";
 import { useState } from 'react';
-
-function Group3() {
-  return (
-    <div className="absolute contents left-[24px] top-[3528px]">
-      <div className="absolute h-0 left-[24px] right-[24px] top-[3528px]">
-        <div className="absolute inset-[-1px_0_0_0]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1.00012">
-            <line id="Line 6" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.500122" vectorEffect="non-scaling-stroke" />
-          </svg>
-        </div>
-      </div>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+70px)] not-italic text-black-normal text-[16px] text-right top-[3624px]">LinkedIn</p>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+61px)] not-italic text-black-normal text-[16px] text-right top-[3648px]">GitHub</p>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+63px)] not-italic text-black-normal text-[16px] text-right top-[3672px]">Archive</p>
-      <div className="absolute flex h-[96px] items-center justify-center left-[calc(75%-6px)] top-[3624px] w-0" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-90">
-          <div className="h-0 relative w-[96px]">
-            <div className="absolute inset-[-1px_0_0_0]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 96 1">
-                <line id="Line 8" stroke="var(--stroke-0, #212222)" x2="96" y1="0.5" y2="0.5" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(62.5%+73px)] not-italic text-black-normal text-[16px] text-right top-[3624px]">Projects</p>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(62.5%+56px)] not-italic text-black-normal text-[16px] text-right top-[3648px]">About</p>
-      <div className="absolute flex h-[96px] items-center justify-center left-[calc(62.5%-3px)] top-[3624px] w-0" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "18" } as React.CSSProperties}>
-        <div className="flex-none rotate-90">
-          <div className="h-0 relative w-[96px]">
-            <div className="absolute inset-[-1px_0_0_0]">
-              <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 96 1">
-                <line id="Line 8" stroke="var(--stroke-0, #212222)" x2="96" y1="0.5" y2="0.5" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className="-translate-x-full absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(62.5%+138px)] not-italic text-black-normal text-[16px] text-right top-[3708px]">© Hajin Lee 2026</p>
-    </div>
-  );
-}
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Language, Page } from "./types";
 
 function Group() {
   return (
-    <div className="absolute contents left-[calc(50%-20px)] top-[528px]">
-      <div className="absolute bg-black-normal h-[24px] left-[calc(50%)] top-[528px] w-[4px]" />
-      <div className="absolute flex items-center justify-center left-[calc(50%-20px)] size-[23.705px] top-[528px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-45 flex-none">
-          <div className="bg-black-normal h-[29.524px] w-[4px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[4px] items-center justify-center left-[calc(50%-20px)] top-[548px] w-[24px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-90 flex-none">
-          <div className="bg-black-normal h-[24px] w-[4px]" />
-        </div>
-      </div>
+    <div className="absolute left-[727px] top-[536px]">
+      <img
+        src={imgArrow}
+        alt="Arrow"
+        className="w-6 h-6 object-contain"
+      />
     </div>
   );
 }
 
-function Group1() {
+function InspirationLines() {
   return (
-    <div className="absolute contents left-[153px] size-[24px] top-[1564px]">
-      <div className="absolute flex h-[4px] items-center justify-center left-[153px] top-[1564px] w-[24px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-90 flex-none">
-          <div className="bg-black-normal h-[24px] w-[4px]" />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[153px] size-[23.705px] top-[1564.29px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-135 flex-none">
-          <div className="bg-black-normal h-[29.524px] w-[4px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[24px] items-center justify-center left-[173px] top-[1564px] w-[4px]">
-        <div className="flex-none rotate-180">
-          <div className="bg-black-normal h-[24px] w-[4px]" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Group2() {
-  return (
-    <div className="absolute contents left-[153px] size-[24px] top-[2788px]">
-      <div className="absolute flex h-[4px] items-center justify-center left-[153px] top-[2788px] w-[24px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-90 flex-none">
-          <div className="bg-black-normal h-[24px] w-[4px]" />
-        </div>
-      </div>
-      <div className="absolute flex items-center justify-center left-[153px] size-[23.705px] top-[2788.29px]" style={{ "--transform-inner-width": "1185", "--transform-inner-height": "0" } as React.CSSProperties}>
-        <div className="-rotate-135 flex-none">
-          <div className="bg-black-normal h-[29.524px] w-[4px]" />
-        </div>
-      </div>
-      <div className="absolute flex h-[24px] items-center justify-center left-[173px] top-[2788px] w-[4px]">
-        <div className="flex-none rotate-180">
-          <div className="bg-black-normal h-[24px] w-[4px]" />
-        </div>
-      </div>
-    </div>
+    <>
+      {/* Line 1: full width */}
+      <div className="absolute left-[24px] right-[24px] top-[840px] h-0 border-t border-[#212222]" />
+      {/* Line 2: starts after the inspirations label */}
+      <div className="absolute left-[180px] right-[24px] top-[864px] h-0 border-t border-[#212222]" />
+      {/* Remaining lines */}
+      <div
+        className="pointer-events-none absolute left-[24px] right-[24px] top-[888px] h-[480px]"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(to bottom, #212222 0, #212222 1px, transparent 1px, transparent 24px)',
+        }}
+      />
+    </>
   );
 }
 
 function Bauhaus() {
   return (
-    <a className="absolute block cursor-pointer left-[calc(12.5%+9px)] size-[100px] top-[912px]" data-name="Bauhaus 2" href="https://www.bauhaus.de/en/">
+    <a className="absolute block cursor-pointer left-[calc(12.5%+9px)] size-[100px] top-[912px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="Bauhaus 2" href="https://www.bauhaus.de/en/">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgBauhaus2} />
     </a>
   );
@@ -126,7 +55,7 @@ function Bauhaus() {
 
 function DieterRams() {
   return (
-    <a className="absolute block cursor-pointer left-[calc(25%+133px)] size-[100px] top-[1080px]" data-name="DieterRams 2" href="https://rams-foundation.org">
+    <a className="absolute block cursor-pointer left-[calc(25%+133px)] size-[100px] top-[1080px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="DieterRams 2" href="https://rams-foundation.org">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgDieterRams2} />
     </a>
   );
@@ -134,7 +63,7 @@ function DieterRams() {
 
 function HomepageEstablishHierarchy2X() {
   return (
-    <a className="absolute block cursor-pointer h-[63px] left-[calc(50%+65px)] top-[1240px] w-[100px]" data-name="homepage-establish-hierarchy@2x 2" href="https://developer.apple.com/design/human-interface-guidelines">
+    <a className="absolute block cursor-pointer h-[63px] left-[calc(50%+65px)] top-[1240px] w-[100px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="homepage-establish-hierarchy@2x 2" href="https://developer.apple.com/design/human-interface-guidelines">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgHomepageEstablishHierarchy2X2} />
     </a>
   );
@@ -142,7 +71,7 @@ function HomepageEstablishHierarchy2X() {
 
 function Rei() {
   return (
-    <a className="absolute block cursor-pointer left-[calc(87.5%-10px)] size-[100px] top-[1222px]" data-name="Rei 2" href="https://www.comme-des-garcons.com">
+    <a className="absolute block cursor-pointer left-[calc(87.5%-10px)] size-[100px] top-[1222px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="Rei 2" href="https://www.comme-des-garcons.com">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRei2} />
     </a>
   );
@@ -150,7 +79,7 @@ function Rei() {
 
 function Rick() {
   return (
-    <a className="absolute block cursor-pointer h-[67px] left-[43px] top-[1176px] w-[100px]" data-name="Rick 2" href="https://www.rickowens.eu/en/CA">
+    <a className="absolute block cursor-pointer h-[67px] left-[43px] top-[1176px] w-[100px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="Rick 2" href="https://www.rickowens.eu/en/CA">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRick2} />
     </a>
   );
@@ -158,7 +87,7 @@ function Rick() {
 
 function Tadao() {
   return (
-    <a className="absolute block cursor-pointer h-[66px] left-[calc(75%+41px)] top-[960px] w-[100px]" data-name="tadao 2" href="https://tadaoandoo.tilda.ws">
+    <a className="absolute block cursor-pointer h-[66px] left-[calc(75%+41px)] top-[960px] w-[100px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="tadao 2" href="https://tadaoandoo.tilda.ws">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgTadao2} />
     </a>
   );
@@ -166,7 +95,7 @@ function Tadao() {
 
 function Virgil() {
   return (
-    <a className="absolute block cursor-pointer left-[calc(50%+36px)] size-[100px] top-[864px]" data-name="Virgil 2" href="https://www.youtube.com/watch?v=qie5VITX6eQ">
+    <a className="absolute block cursor-pointer left-[calc(50%+36px)] size-[100px] top-[864px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="Virgil 2" href="https://www.youtube.com/watch?v=qie5VITX6eQ">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgVirgil2} />
     </a>
   );
@@ -174,7 +103,7 @@ function Virgil() {
 
 function Image1() {
   return (
-    <div className="absolute h-[180px] right-[24px] top-[2034px] w-[244px]" data-name="image 24">
+    <div className="absolute h-[180px] right-[24px] top-[2034px] w-[244px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="image 24">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage24} />
     </div>
   );
@@ -182,7 +111,7 @@ function Image1() {
 
 function Image2() {
   return (
-    <div className="absolute right-[24px] size-[264px] top-[2304px]" data-name="image 33">
+    <div className="absolute right-[24px] size-[264px] top-[2304px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="image 33">
       <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage33} />
     </div>
   );
@@ -190,16 +119,13 @@ function Image2() {
 
 function Image() {
   return (
-    <div className="absolute h-[194px] right-[24px] top-[1715px] w-[233px]" data-name="image 21">
+    <div className="absolute h-[194px] right-[24px] top-[1715px] w-[233px] transition-transform duration-300 ease-out hover:scale-[1.6] origin-center" data-name="image 21">
       <div className="absolute h-[194px] left-0 top-0 w-[233px]" data-name="image 19">
         <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage19} />
       </div>
     </div>
   );
 }
-
-type Page = 'home' | 'projects' | 'about';
-type Language = 'EN' | 'JP' | 'KR';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -211,24 +137,15 @@ export default function App() {
         <div className="layout-canvas">
           <div className="layout-canvas-inner">
             <div className="relative min-h-screen">
-          {/* Header */}
-          <button onClick={() => setCurrentPage('home')} className="absolute left-[24px] size-[48px] top-[24px] cursor-pointer z-10">
-            <img alt="" className="size-full object-cover" src={imgLogoDark1} />
-          </button>
-          
-          <button onClick={() => setCurrentPage('projects')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%-18px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10 underline [text-decoration-skip-ink:none] decoration-solid">Projects</button>
-          <button onClick={() => setCurrentPage('about')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+134px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10">About</button>
-          <div className="absolute top-[24px] right-[24px] flex items-center gap-[6px] text-[10px] whitespace-nowrap z-10">
-            <button onClick={() => setLanguage('EN')} className={`cursor-pointer bg-transparent border-none ${language === 'EN' ? 'underline' : ''}`}>EN</button>
-            <span>|</span>
-            <button onClick={() => setLanguage('JP')} className={`cursor-pointer bg-transparent border-none ${language === 'JP' ? 'underline' : ''}`}>JP</button>
-            <span>|</span>
-            <button onClick={() => setLanguage('KR')} className={`cursor-pointer bg-transparent border-none ${language === 'KR' ? 'underline' : ''}`}>KR</button>
-          </div>
-
-            <div className="flex items-center justify-center h-screen">
-              <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[64px] text-black-normal">Projects Page</p>
-            </div>
+              <Header
+                currentPage={currentPage}
+                language={language}
+                onNavigate={(page) => setCurrentPage(page)}
+                onLanguageChange={(lang) => setLanguage(lang)}
+              />
+              <div className="flex items-center justify-center h-screen">
+                <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[64px] text-black-normal">Projects Page</p>
+              </div>
             </div>
           </div>
         </div>
@@ -242,24 +159,15 @@ export default function App() {
         <div className="layout-canvas">
           <div className="layout-canvas-inner">
             <div className="relative min-h-screen">
-          {/* Header */}
-          <button onClick={() => setCurrentPage('home')} className="absolute left-[24px] size-[48px] top-[24px] cursor-pointer z-10">
-            <img alt="" className="size-full object-cover" src={imgLogoDark1} />
-          </button>
-          
-          <button onClick={() => setCurrentPage('projects')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%-18px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10">Projects</button>
-          <button onClick={() => setCurrentPage('about')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+134px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10 underline [text-decoration-skip-ink:none] decoration-solid">About</button>
-          <div className="absolute top-[24px] right-[24px] flex items-center gap-[6px] text-[10px] whitespace-nowrap z-10">
-            <button onClick={() => setLanguage('EN')} className={`cursor-pointer bg-transparent border-none ${language === 'EN' ? 'underline' : ''}`}>EN</button>
-            <span>|</span>
-            <button onClick={() => setLanguage('JP')} className={`cursor-pointer bg-transparent border-none ${language === 'JP' ? 'underline' : ''}`}>JP</button>
-            <span>|</span>
-            <button onClick={() => setLanguage('KR')} className={`cursor-pointer bg-transparent border-none ${language === 'KR' ? 'underline' : ''}`}>KR</button>
-          </div>
-
-            <div className="flex items-center justify-center h-screen">
-              <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[64px] text-black-normal">About Page</p>
-            </div>
+              <Header
+                currentPage={currentPage}
+                language={language}
+                onNavigate={(page) => setCurrentPage(page)}
+                onLanguageChange={(lang) => setLanguage(lang)}
+              />
+              <div className="flex items-center justify-center h-screen">
+                <p className="font-['Plus_Jakarta_Sans',sans-serif] text-[64px] text-black-normal">About Page</p>
+              </div>
             </div>
           </div>
         </div>
@@ -269,24 +177,15 @@ export default function App() {
 
   return (
     <div className="layout-viewport hide-scrollbar">
-      <div className="layout-canvas">
-        <div className="layout-canvas-inner">
-          <div className="relative min-h-[3780px]">
-        {/* Header - Clickable Elements */}
-        <button onClick={() => setCurrentPage('home')} className="absolute left-[24px] size-[48px] top-[24px] cursor-pointer z-10" data-name="logo_dark 1">
-          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgLogoDark1} />
-        </button>
-
-        <button onClick={() => setCurrentPage('projects')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%-18px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10">Projects</button>
-        <button onClick={() => setCurrentPage('about')} className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(75%+134px)] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10">About</button>
-        
-        <div className="absolute top-[24px] right-[24px] flex items-center gap-[6px] text-[10px] whitespace-nowrap z-10">
-          <button onClick={() => setLanguage('EN')} className={`cursor-pointer bg-transparent border-none leading-[normal] ${language === 'EN' ? 'underline [text-decoration-skip-ink:none] decoration-solid' : ''}`}>EN</button>
-          <span className="leading-[normal]">|</span>
-          <button onClick={() => setLanguage('JP')} className={`cursor-pointer bg-transparent border-none leading-[normal] ${language === 'JP' ? 'underline [text-decoration-skip-ink:none] decoration-solid' : ''}`}>JP</button>
-          <span className="leading-[normal]">|</span>
-          <button onClick={() => setLanguage('KR')} className={`cursor-pointer bg-transparent border-none leading-[normal] ${language === 'KR' ? 'underline [text-decoration-skip-ink:none] decoration-solid' : ''}`}>KR</button>
-        </div>
+        <div className="layout-canvas">
+          <div className="layout-canvas-inner">
+            <div className="relative min-h-[3780px]">
+        <Header
+          currentPage={currentPage}
+          language={language}
+          onNavigate={(page) => setCurrentPage(page)}
+          onLanguageChange={(lang) => setLanguage(lang)}
+        />
 
         <div className="absolute h-0 left-[calc(25%+18px)] right-[24px] top-[1656px]">
           <div className="absolute inset-[-1px_0_0_0]">
@@ -302,22 +201,32 @@ export default function App() {
             </svg>
           </div>
         </div>
-        <Group3 />
-        
         <p className="absolute type-title-1 left-[154px] text-black-normal top-[307px]">HAJIN</p>
         
-        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(50%-20px)] not-italic text-black-normal text-[18px] top-[480px] whitespace-nowrap">
+        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[727px] not-italic text-black-normal text-[18px] top-[484px] whitespace-nowrap">
           <p className="mb-0">VANCOUVER BASED</p>
           <p>UI/UX DESINGER</p>
         </div>
         
         <Group />
         
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[24px] not-italic text-black-normal text-[32px] top-[1560px]">Work</p>
+        <button
+          onClick={() => setCurrentPage('projects')}
+          className="absolute left-[24px] top-[1560px] flex items-center gap-[12px] cursor-pointer bg-transparent border-none p-0"
+          aria-label="Go to Projects"
+        >
+          <p className="type-heading-2 text-black-normal m-0 leading-[1.2]">Projects</p>
+          <img src={imgArrow} alt="" className="w-6 h-6 object-contain translate-y-[2px]" />
+        </button>
         <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[1571px] w-[916px] whitespace-pre-wrap">A selection of highlighted projects showcasing recent work across UX/UI, web, and visual design.</p>
-        <Group1 />
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[24px] not-italic text-black-normal text-[32px] top-[2784px]">About</p>
-        <Group2 />
+        <button
+          onClick={() => setCurrentPage('about')}
+          className="absolute left-[24px] top-[2784px] flex items-center gap-[12px] cursor-pointer bg-transparent border-none p-0"
+          aria-label="Go to About"
+        >
+          <p className="type-heading-2 text-black-normal m-0 leading-[1.2]">About</p>
+          <img src={imgArrow} alt="" className="w-6 h-6 object-contain translate-y-[2px]" />
+        </button>
         <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(62.5%-15px)] not-italic text-black-normal text-[18px] top-[1680px] w-[262px] whitespace-pre-wrap">
           <p className="mb-0">Product design</p>
           <p className="mb-0">Mobile UX/UI design</p>
@@ -334,15 +243,15 @@ export default function App() {
           <p>Print-ready composition</p>
         </div>
         <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(37.5%-9px)] right-[calc(37.5%+15px)] not-italic text-black-normal text-[0px] top-[1680px]">
-          <p className="font-['Plus_Jakarta_Sans',sans-serif] mb-0 text-[24px]">ProLog</p>
+          <p className="type-heading-3 text-black-normal mb-0">ProLog</p>
           <p className="text-[18px]">Skilled trades apprenticeship app for progress tracking</p>
         </div>
         <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(37.5%-9px)] right-[calc(37.5%+15px)] not-italic text-black-normal text-[0px] top-[1992px]">
-          <p className="font-['Plus_Jakarta_Sans',sans-serif] mb-0 text-[24px]">TinyPaws</p>
+          <p className="type-heading-3 text-black-normal mb-0">TinyPaws</p>
           <p className="text-[18px]">Cat adoption website for a rescue nonprofit</p>
         </div>
         <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(37.5%-9px)] right-[calc(37.5%+15px)] not-italic text-black-normal text-[0px] top-[2304px]">
-          <p className="font-['Plus_Jakarta_Sans',sans-serif] mb-0 text-[24px]">{` Best of Iceland`}</p>
+          <p className="type-heading-3 text-black-normal mb-0">{` Best of Iceland`}</p>
           <p className="text-[18px]">G Adventure itinerary redesigned as a magazine</p>
         </div>
         <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[2304px]">(3)</p>
@@ -419,168 +328,8 @@ export default function App() {
             <img alt="" className="absolute inset-0 object-cover size-full" src={imgImg26161} />
           </div>
         </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[840px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1368px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1344px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1320px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1296px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1272px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1248px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1224px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1200px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1176px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1152px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1128px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1104px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1080px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1056px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1032px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[1008px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[984px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[960px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[936px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[912px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[24px] right-[24px] top-[888px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1392 1">
-              <line id="Line 21" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <div className="absolute h-0 left-[calc(12.5%-3px)] right-[24px] top-[864px]">
-          <div className="absolute inset-[-1px_0_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1239 1">
-              <line id="Line 43" stroke="var(--stroke-0, #212222)" x1="0" x2="100%" y1="0.5" y2="0.5" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[24px] not-italic text-black-normal text-[24px] top-[855px]">inspirations</p>
+        <InspirationLines />
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[24px] not-italic text-black-normal text-[24px] top-[844px]">inspirations</p>
         <Bauhaus />
         <DieterRams />
         <HomepageEstablishHierarchy2X />
@@ -594,6 +343,10 @@ export default function App() {
         <div className="absolute bg-grey-normal-active right-[24px] size-[264px] top-[2304px]" />
         <Image2 />
         <Image />
+        <Footer
+          onNavigate={(page) => setCurrentPage(page)}
+          onArchiveClick={() => {}}
+        />
           </div>
         </div>
       </div>

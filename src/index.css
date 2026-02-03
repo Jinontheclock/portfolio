@@ -11,3 +11,8 @@
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
 }
+
+/* Normalize all inline SVG line thickness to 1px */
+svg line {
+  stroke-width: 1px;
+}
