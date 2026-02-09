@@ -224,6 +224,7 @@
 
 html {
   font-size: var(--font-size);
+  scroll-behavior: smooth;
 }
 
 /* Typography scale */
@@ -346,14 +347,91 @@ body::-webkit-scrollbar {
   background-color: var(--color-grey-normal-active);
 }
 
+.reveal-line {
+  position: absolute;
+  pointer-events: none;
+}
+
+.reveal-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--line-thickness, 1px);
+  height: 0;
+  background: var(--line-color, currentColor);
+  transition: height 900ms ease;
+  transition-delay: var(--line-delay, 0ms);
+}
+
+.reveal-line.is-visible::after {
+  height: var(--line-height, 100%);
+}
+
+.reveal-hline {
+  position: absolute;
+  display: block;
+  height: var(--line-thickness, 1px);
+  overflow: hidden;
+}
+
+.reveal-hline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--line-color, currentColor);
+  transform: translateX(-100%);
+  transition: transform 800ms ease;
+  transition-delay: var(--line-delay, 0ms);
+}
+
+.reveal-hline.is-visible::after {
+  transform: translateX(0);
+}
+
+.nav-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(150%) scaleX(0);
+  transform-origin: left bottom;
+  transition: transform 220ms ease, opacity 220ms ease;
+  opacity: 0;
+}
+
+.nav-underline:hover::after,
+.nav-underline.is-active::after {
+  transform: translateY(0) scaleX(1);
+  opacity: 1;
+}
+
 /* Layout scaling */
 .layout-viewport {
   /* 캔버스를 뷰포트 폭에 맞게 확장 */
   --layout-width: min(1920px, 100vw);
   --layout-base-gap: 0px;
   --layout-top: 0px;
-  --layout-gutter: 0px;
-  --layout-scale: 1;
+  --layout-gutter: 8px; /* 좌우 여백 고정 */
+  /* 뷰포트-여백 너비와 베이스 폭 비율로 스케일 결정 (확대/축소 모두 허용) */
+  --layout-scale: clamp(
+    0.15,
+    calc((100vw - (var(--layout-gutter) * 2)) / var(--layout-base-width)),
+    3
+  );
+  /* 높이는 확대하지 않고 축소만 허용 (큰 화면에서 과도한 세로 여백 방지) */
+  --layout-scale-height: min(var(--layout-scale), 1);
   background-color: var(--color-grey-normal);
   height: 100vh;
   width: 100vw;
@@ -361,20 +439,21 @@ body::-webkit-scrollbar {
   overflow-y: auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: var(--layout-top) var(--layout-gutter);
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .layout-canvas {
-  width: 100%;
+  width: calc(var(--layout-base-width) * var(--layout-scale));
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .layout-canvas-inner {
-  width: 100%;
+  width: var(--layout-base-width);
   transform: scale(var(--layout-scale));
   transform-origin: top left;
 }
@@ -382,7 +461,7 @@ body::-webkit-scrollbar {
 /* Breakpoints */
 @media (max-width: 1024px) {
   :root {
-    --layout-base-width: 1024px;
+    --layout-base-width: 1440px; /* 고정: 전체 비율 스케일링을 위해 base width 유지 */
   }
 
   .type-title-1 {
@@ -416,7 +495,7 @@ body::-webkit-scrollbar {
 
 @media (max-width: 640px) {
   :root {
-    --layout-base-width: 640px;
+    --layout-base-width: 1440px; /* 고정: 전체 비율 스케일링을 위해 base width 유지 */
   }
 
   .type-title-1 {

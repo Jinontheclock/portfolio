@@ -1,7 +1,7 @@
 import Header from './Header';
 import Footer from './Footer';
 import { Language, Page } from '../types';
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 
 type ProjectsPageProps = {
   currentPage: Page;
@@ -17,63 +17,17 @@ const columnLeft = {
   year: 'left-[calc(87.5%+94px)]',
 };
 
+const ROW_START = 696;
+const ROW_GAP = 48;
 const rows = [
-  {
-    top: 696,
-    workType: 'App & Website',
-    title: 'Individual Project',
-    role: 'Independent',
-    year: '2026',
-  },
-  {
-    top: 744,
-    workType: 'App',
-    title: 'ProLog',
-    role: 'UI Developer',
-    year: '2025',
-  },
-  {
-    top: 792,
-    workType: 'Website',
-    title: 'TinyPaws',
-    role: 'UI/UX Designer',
-    year: '2025',
-  },
-  {
-    top: 864,
-    workType: 'Magazine',
-    title: 'Best of Iceland',
-    role: 'Independent',
-    year: '2025',
-  },
-  {
-    top: 912,
-    workType: 'Package',
-    title: 'Matcha Drinks',
-    role: 'Independent',
-    year: '2025',
-  },
-  {
-    top: 960,
-    workType: 'Motion',
-    title: 'StarLink',
-    role: 'Independent',
-    year: '2025',
-  },
-  {
-    top: 1008,
-    workType: 'Poster',
-    title: 'Ikea',
-    role: 'Independent',
-    year: '2025',
-  },
-  {
-    top: 1080,
-    workType: 'Promotional Material',
-    title: 'MUJI',
-    role: 'VMD',
-    year: '2024',
-  },
+  { offset: 0, workType: 'App & Website', title: 'Individual Project', role: 'Independent', year: '2026' },
+  { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025' },
+  { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025' },
+  { offset: 3, workType: 'Magazine', title: 'Best of Iceland', role: 'Independent', year: '2025' },
+  { offset: 4, workType: 'Package', title: 'Matcha Drinks', role: 'Independent', year: '2025' },
+  { offset: 5, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
+  { offset: 6, workType: 'Poster', title: 'Ikea', role: 'Independent', year: '2025' },
+  { offset: 7, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024' },
 ];
 
 export default function ProjectsPage({ currentPage, language, onNavigate, onLanguageChange }: ProjectsPageProps) {
@@ -81,7 +35,10 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
     <div className="layout-viewport hide-scrollbar">
       <div className="layout-canvas">
         <div className="layout-canvas-inner">
-          <div className="relative min-h-[1480px] bg-grey-normal">
+          <div
+            className="relative bg-grey-normal"
+            style={{ "--layout-base-height-projects": "1480px", minHeight: "calc(var(--layout-base-height-projects) * var(--layout-scale-height))" } as CSSProperties}
+          >
             <Header
               currentPage={currentPage}
               language={language}
@@ -128,34 +85,37 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
               year
             </p>
 
-            {rows.map((row) => (
+            {rows.map((row) => {
+              const top = ROW_START + row.offset * ROW_GAP;
+              return (
               <React.Fragment key={row.top}>
                 <p
                   className={`absolute font-['Plus_Jakarta_Sans',sans-serif] font-semibold leading-[normal] text-black-normal text-[24px] ${columnLeft.workType}`}
-                  style={{ top: row.top }}
+                  style={{ top }}
                 >
                   {row.workType}
                 </p>
                 <p
                   className={`absolute font-['Plus_Jakarta_Sans',sans-serif] font-semibold leading-[normal] text-black-normal text-[24px] ${columnLeft.title}`}
-                  style={{ top: row.top }}
+                  style={{ top }}
                 >
                   {row.title}
                 </p>
                 <p
                   className={`absolute font-['Plus_Jakarta_Sans',sans-serif] font-semibold leading-[normal] text-black-normal text-[24px] ${columnLeft.role}`}
-                  style={{ top: row.top }}
+                  style={{ top }}
                 >
                   {row.role}
                 </p>
                 <p
                   className={`absolute font-['Plus_Jakarta_Sans',sans-serif] font-semibold leading-[normal] text-black-normal text-[24px] ${columnLeft.year}`}
-                  style={{ top: row.top }}
+                  style={{ top }}
                 >
                   {row.year}
                 </p>
               </React.Fragment>
-            ))}
+            );
+            })}
 
             {/* Footer for this page sits near the bottom of the list */}
             <Footer onNavigate={onNavigate} top={1200} />

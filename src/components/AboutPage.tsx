@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Language, Page } from '../types';
+import RevealLine from './RevealLine';
 
 // Remote asset from Figma (valid ~7 days). Replace with local if needed.
 const heroImage = "https://www.figma.com/api/mcp/asset/54595635-ee19-4eb0-ab84-23945735eca3";
@@ -26,7 +27,10 @@ export default function AboutPage({ currentPage, language, onNavigate, onLanguag
     <div className="layout-viewport hide-scrollbar">
       <div className="layout-canvas">
         <div className="layout-canvas-inner">
-          <div className="relative min-h-[2800px] bg-grey-normal text-black-normal">
+          <div
+            className="relative bg-grey-normal text-black-normal"
+            style={{ "--layout-base-height-about": "2800px", minHeight: "calc(var(--layout-base-height-about) * var(--layout-scale-height))" } as CSSProperties}
+          >
             <Header
               currentPage={currentPage}
               language={language}
@@ -45,7 +49,7 @@ export default function AboutPage({ currentPage, language, onNavigate, onLanguag
             <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] font-bold text-[32px] left-[24px] top-[648px]">
               About Me
             </p>
-            <div className="absolute type-body-lg left-[calc(37.5%+15px)] top-[648px] w-[861px]">
+            <div className="absolute type-body-lg" style={{ left: 'calc(37.5% + 15px)', top: 648, width: 861 }}>
               <p className="mb-0">Originally from Seoul, I moved to Canada in 2024 to transition my career into UX/UI design.</p>
               <p className="mb-0">
                 With professional experience in the Japanese retail industry, I developed a strong foundation in an
@@ -56,25 +60,32 @@ export default function AboutPage({ currentPage, language, onNavigate, onLanguag
 
             {/* Hero image */}
             <div
-              className="absolute top-[839px] w-[1038px] h-[625px] overflow-hidden"
-              style={{ left: 'calc(25% + 190px)' }}
+              className="absolute overflow-hidden"
+              style={{
+                top: 839,
+                left: 'calc(25% + 190px)',
+                right: 24,
+                height: 625,
+                maxWidth: 1038,
+              }}
             >
               <img src={currentImage} alt="Exhibit" className="absolute h-[124.56%] w-full left-0 top-[-20.84%] object-cover" />
             </div>
             {/* Image captions */}
-            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black left-[calc(37.5%+15px)] top-[1481px]">
+            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black" style={{ left: 'calc(37.5% + 15px)', top: 1481 }}>
               Christian Boltanski at MOT
             </p>
-            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black left-[calc(37.5%+15px)] top-[1492px]">
+            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black" style={{ left: 'calc(37.5% + 15px)', top: 1492 }}>
               2019
             </p>
-            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black left-[calc(62.5%+9px)] top-[1481px]">
+            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black" style={{ left: 'calc(62.5% + 9px)', top: 1481 }}>
               {String(photoIndex + 1).padStart(2, '0')}/{String(total).padStart(2, '0')}
             </p>
             <button
               type="button"
               onClick={goPrev}
-              className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black left-[calc(75%+137px)] top-[1476px] bg-transparent border-none cursor-pointer"
+              className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black bg-transparent border-none cursor-pointer"
+              style={{ left: 'calc(75% + 137px)', top: 1476 }}
               aria-label="Previous photo"
             >
               prev
@@ -82,21 +93,29 @@ export default function AboutPage({ currentPage, language, onNavigate, onLanguag
             <button
               type="button"
               onClick={goNext}
-              className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black left-[calc(87.5%+3px)] top-[1476px] bg-transparent border-none cursor-pointer"
+              className="absolute font-['Plus_Jakarta_Sans',sans-serif] text-[10px] text-black bg-transparent border-none cursor-pointer"
+              style={{ left: 'calc(87.5% + 3px)', top: 1476 }}
               aria-label="Next photo"
             >
               next
             </button>
 
             {/* Secondary paragraph */}
-            <div className="absolute type-body-lg left-[calc(37.5%+15px)] top-[1608px] w-[860px]">
+            <div className="absolute type-body-lg" style={{ left: 'calc(37.5% + 15px)', top: 1608, width: 860 }}>
               I approach design with a focus on clarity and real-world feasibility. I identify challenges within user flows and refine interfaces through clear structure and iterative improvement. With a combined understanding of graphic design and development, I value delivering seamless, frustration-free digital experiences that go beyond aesthetics.
             </div>
 
             {/* Vertical dividers for stacks */}
-            <div className="absolute h-[264px] left-[calc(25%+18px)] top-[1896px] w-[0px] border-l border-black/60" />
-            <div className="absolute h-[264px] left-[calc(50%+12px)] top-[1896px] w-[0px] border-l border-black/60" />
-            <div className="absolute h-[264px] left-[calc(75%+6px)] top-[1896px] w-[0px] border-l border-black/60" />
+            {['calc(25% + 18px)', 'calc(50% + 12px)', 'calc(75% + 6px)'].map((left, idx) => (
+              <RevealLine
+                key={left}
+                height={264}
+                className="absolute"
+                style={{ left, top: 1896 }}
+                color="rgba(33,34,34,0.6)"
+                delayMs={idx * 60}
+              />
+            ))}
 
             {/* Design Stack */}
             <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] font-semibold text-[24px] left-[calc(25%+30px)] top-[1896px]">
@@ -141,8 +160,8 @@ export default function AboutPage({ currentPage, language, onNavigate, onLanguag
             ))}
 
             {/* Education */}
-            <div className="absolute left-[calc(25%+30px)] top-[2256px] w-[391px]">
-              <div className="absolute -left-[12px] top-[0px] h-[216px] w-[0px] border-l border-black/60" />
+            <div className="absolute" style={{ left: 'calc(25% + 30px)', top: 2256, width: 391 }}>
+              <RevealLine height={216} className="absolute" style={{ left: -12, top: 0 }} color="rgba(33,34,34,0.6)" />
               <p className="font-['Plus_Jakarta_Sans',sans-serif] font-semibold text-[24px] mb-[12px]">Education</p>
               <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[18px] m-0">2026</p>
               <p className="font-['Plus_Jakarta_Sans',sans-serif] font-medium text-[18px] m-0">Digital Design and Development</p>

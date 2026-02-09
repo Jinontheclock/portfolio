@@ -9,8 +9,11 @@ type HeaderProps = {
   onLanguageChange: (language: Language) => void;
 };
 
+const NAV_TOP = 24;
+const NAV_GAP = 152; // distance between Projects and About
+const NAV_LEFT_BASE = 'calc(75% - 18px)';
 const navBase =
-  "absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-black-normal text-[16px] top-[24px] cursor-pointer bg-transparent border-none z-10";
+  "absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-black-normal text-[16px] cursor-pointer bg-transparent border-none z-10";
 
 const activeUnderline = 'underline [text-decoration-skip-ink:none] decoration-solid';
 
@@ -107,16 +110,18 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
 
       <button
         onClick={() => onNavigate('projects')}
-        className={`${navBase} left-[calc(75%-18px)] ${currentPage === 'projects' ? activeUnderline : ''}`}
+        className={`${navBase} ${currentPage === 'projects' ? activeUnderline : ''}`}
+        style={{ left: NAV_LEFT_BASE as string, top: NAV_TOP }}
       >
-        Projects
+        <span className={`nav-underline ${currentPage === 'projects' ? 'is-active' : ''}`}>Projects</span>
       </button>
 
       <button
         onClick={() => onNavigate('about')}
-        className={`${navBase} left-[calc(75%+134px)] ${currentPage === 'about' ? activeUnderline : ''}`}
+        className={`${navBase} ${currentPage === 'about' ? activeUnderline : ''}`}
+        style={{ left: `calc(${NAV_LEFT_BASE} + ${NAV_GAP}px)`, top: NAV_TOP }}
       >
-        About
+        <span className={`nav-underline ${currentPage === 'about' ? 'is-active' : ''}`}>About</span>
       </button>
 
       <div className="absolute top-[24px] right-[24px] flex items-center gap-[6px] text-[10px] whitespace-nowrap z-10">
