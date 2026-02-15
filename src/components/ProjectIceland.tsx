@@ -5,6 +5,16 @@ import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
 import layout2col from '../assets/layout_2col.png';
 import layout3col from '../assets/layout_3col.png';
+import IcelandHero from '../assets/Iceland.jpeg';
+import Map1 from '../assets/Map1.png';
+import Map2 from '../assets/Map2.png';
+import Map3 from '../assets/Map3.png';
+import Mock1 from '../assets/BestofIceland_mockup1.png';
+import Mock2 from '../assets/BestofIceland_mockup2.png';
+import Mock3 from '../assets/BestofIceland_mockup3.png';
+import Mock4 from '../assets/BestofIceland_mockup4.png';
+import Mock5 from '../assets/BestofIceland_mockup5.png';
+import Map4 from '../assets/Map4.png';
 type Props = {
   currentPage: Page;
   language: Language;
@@ -21,22 +31,35 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
           <div className="relative">
             <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
 
-            <ProjectHeader
-              title="Best of Iceland"
-              timeline="1 month"
-              tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
-              role="Independent"
-              reference="G Adventures"
-              description={[
-                'Developed as an academic project, this brochure redesign reinterprets G Adventures’ “Best of Iceland” tour as a structured editorial publication.',
-                'By reorganizing the itinerary into a clear day-by-day narrative with strong visual hierarchy, the project enhances product visibility and positions the tour as both a promotional piece and an informative guide.',
-              ]}
-            />
+            <div className="flex flex-col gap-0 mt-12">
+              <ProjectHeader
+                title="Best of Iceland"
+                timeline="1 month"
+                tools={['Adobe InDesign', 'Adobe Photoshop', 'Adobe Illustrator']}
+                role="Independent"
+                reference="G Adventures"
+                description={[
+                  'Developed as an academic project, this brochure redesign reinterprets G Adventures’ “Best of Iceland” tour as a structured editorial publication.',
+                  'By reorganizing the itinerary into a clear day-by-day narrative with strong visual hierarchy, the project enhances product visibility and positions the tour as both a promotional piece and an informative guide.',
+                ]}
+              />
+
+              {/* Hero image */}
+              <section className="px-3 tablet:px-5 desktop:px-7">
+                <div className="flex justify-center">
+                  <img
+                    src={IcelandHero}
+                    alt="Best of Iceland overview"
+                    className="w-full max-w-[1400px] h-auto"
+                  />
+                </div>
+              </section>
+            </div>
 
             <div className="iceland-fluid">
 
             {/* Typography block */}
-            <section className="px-3 tablet:px-5 desktop:px-7 pb-16">
+            <section className="px-3 tablet:px-5 desktop:px-7 pb-16 mt-20">
               <div className="grid desktop:grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">01 Design Process</h2>
 
@@ -81,21 +104,18 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
             </section>
 
             {/* Grid System */}
-            <section className="px-3 tablet:px-5 desktop:px-7 pb-20 mt-20">
+            <section className="px-3 tablet:px-5 desktop:px-7 pb-16 mt-8">
               <div className="grid desktop:grid-cols-[260px_1fr] gap-12 items-start">
                 <div className="h-0" />
 
                 <div className="grid gap-6 pl-4 tablet:pl-8 desktop:pl-48">
-                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3] whitespace-nowrap">Grid System</h3>
-                  <p className="type-body text-black-normal m-0 leading-[1.6]">
+                  <div>
+                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Grid System</h3>
+                  <p className="type-body text-black-normal m-0 mt-2 leading-[1.6]">
                     It uses a flexible column-based grid system to ensure clarity and consistency across spreads. Both 2–column and 3–column layouts were applied depending on content needs, balancing imagery with readable travel information.
                   </p>
-
-                  <div className="type-body text-black-normal space-y-1 leading-[1.6]">
-                    <p className="m-0">Standard Margins Top: 0.5 in | Bottom: 0.75 in | Inside: 0.5 in | Outside: 0.5 in</p>
-                    <p className="m-0">Standard Gutter: 0.1667 in</p>
-                    <p className="m-0">The slightly larger bottom margin creates breathing space for captions and page flow.</p>
                   </div>
+
 
                   <div className="grid desktop:grid-cols-2 gap-8 items-start">
                     <figure className="p-0 m-0 text-left">
@@ -111,41 +131,41 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
                       </figcaption>
                     </figure>
                   </div>
+                  <div className="type-body text-black-normal space-y-1 leading-[1.6]">
+                    <p className="m-0">Standard Margins Top: 0.5 in | Bottom: 0.75 in | Inside: 0.5 in | Outside: 0.5 in</p>
+                    <p className="m-0">Standard Gutter: 0.1667 in</p>
+                    <p className="m-0">The slightly larger bottom margin creates breathing space for captions and page flow.</p>
+                  </div>
                 </div>
               </div>
             </section>
 
             {/* Graphics */}
-            <section className="px-3 tablet:px-5 desktop:px-7 pb-20">
+            <section className="px-3 tablet:px-5 desktop:px-7 pb-16 mt-8">
               <div className="grid desktop:grid-cols-[260px_1fr] gap-12 items-start">
                 <div className="h-0" />
 
                 <div className="grid gap-6 pl-4 tablet:pl-8 desktop:pl-48">
-                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3] whitespace-nowrap">Graphics</h3>
-                  <p className="type-body text-black-normal m-0 leading-[1.6]">
-                    Key visual spreads and digital compositions used across the project.
+                  <div>
+                  <h3 className="type-heading-3 text-black-normal m-0 leading-[1.3]">Graphics</h3>
+                  <p className="type-body text-black-normal m-0 mt-2 leading-[1.6]">
+                    A simplified route map visualizing the journey across Iceland, highlighting key destinations and travel flow.
                   </p>
+                  </div>
 
-                  <div className="grid desktop:grid-cols-2 gap-8 items-start">
-                    <figure className="p-0 m-0 text-left">
-                      <img src={layout2col} alt="Graphic 1" className="w-full h-auto block" />
-                      <figcaption className="mt-1 text-[13px] font-medium text-black-normal text-left">
-                        Spread sample 1
-                      </figcaption>
-                    </figure>
-                    <figure className="p-0 m-0 text-left">
-                      <img src={layout3col} alt="Graphic 2" className="w-full h-auto block" />
-                      <figcaption className="mt-1 text-[13px] font-medium text-black-normal text-left">
-                        Spread sample 2
-                      </figcaption>
-                    </figure>
+                  <div className="flex flex-wrap gap-4 justify-start">
+                    {[Map1, Map2, Map3].map((src, idx) => (
+                      <figure key={src} className="p-0 m-0 text-left w-full desktop:w-[32%]">
+                        <img src={src} alt={`Map visual ${idx + 1}`} className="w-full h-auto block" />
+                      </figure>
+                    ))}
                   </div>
                 </div>
               </div>
             </section>
 
             {/* 02 Digital Edition with PDF viewer */}
-            <section className="px-3 tablet:px-5 desktop:px-7 pb-20 mt-16">
+            <section className="px-3 tablet:px-5 desktop:px-7 pb-20 mt-20">
               <div className="grid desktop:grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">02 Digital Edition</h2>
                 <div className="grid gap-4 pl-4 tablet:pl-8 desktop:pl-48">
@@ -164,19 +184,26 @@ export default function ProjectIceland({ currentPage, language, onNavigate, onLa
             </section>
 
             {/* 03 Final Result */}
-            <section className="px-3 tablet:px-5 desktop:px-7 pb-24 mt-16">
+            <section className="px-3 tablet:px-5 desktop:px-7 pb-20 mt-20">
               <div className="grid desktop:grid-cols-[260px_1fr] gap-12 items-start">
                 <h2 className="type-heading-2 text-black-normal m-0 leading-[1.2] whitespace-nowrap">03 Final Result</h2>
-                <div className="grid gap-4 pl-4 tablet:pl-8 desktop:pl-48">
-                  {/* Placeholder for final assets or summary */}
-                  <p className="type-body text-black-normal m-0 leading-[1.6]">
-                    Final deliverables and showcase will be added here.
-                  </p>
+                <div className="grid gap-6 pl-4 tablet:pl-8 desktop:pl-48">
+                  <div className="grid desktop:grid-cols-[3fr_2fr] gap-8 items-start">
+                    <div className="flex flex-col gap-8">
+                      <img src={Mock5} alt="Final spread mockup 5" className="w-full h-auto block object-cover" />
+                      <img src={Mock4} alt="Final spread mockup 4" className="w-full h-[580px] block object-cover object-top" />
+                    </div>
+                    <div className="flex flex-col gap-8">
+                      <img src={Mock1} alt="Final spread mockup 1" className="w-full h-auto block object-cover" />
+                      <img src={Mock2} alt="Final spread mockup 2" className="w-full h-auto block object-cover" />
+                      <img src={Mock3} alt="Final spread mockup 3" className="w-full h-auto block object-cover object-center" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <Footer onNavigate={onNavigate} top={5200} />
+            <Footer onNavigate={onNavigate} top={5000} />
 
             </div>
           </div>
