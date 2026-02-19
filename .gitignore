@@ -23,3 +23,9 @@ build
 *.njsproj
 *.sln
 *.sw?
+
+# Generated from ProLog-main web export
+public/prolog/app/
+public/_expo/
+public/assets/assets/
+public/assets/node_modules/

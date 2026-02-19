@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ProjectsPage from "./components/ProjectsPage";
 import AboutPage from "./components/AboutPage";
 import ProjectIceland from "./components/ProjectIceland";
+import ProjectProLog from "./components/ProjectProLog";
 import ProjectTinyPaws from "./components/ProjectTinyPaws";
 import { Language, Page } from "./types";
 import RevealLine, { RevealHLine } from "./components/RevealLine";
@@ -176,6 +177,7 @@ const PAGE_PATHS: Record<Page, string> = {
   home: '/',
   projects: '/projects',
   about: '/about',
+  prolog: '/projects/prolog',
   iceland: '/projects/best-of-iceland',
   tinypaws: '/projects/tinypaws',
 };
@@ -190,6 +192,7 @@ function pageFromPath(pathname: string): Page {
 
   if (path === '/projects') return 'projects';
   if (path === '/about') return 'about';
+  if (path === '/projects/prolog' || path === '/prolog') return 'prolog';
   if (path === '/projects/best-of-iceland' || path === '/iceland') return 'iceland';
   if (path === '/projects/tinypaws' || path === '/tinypaws') return 'tinypaws';
 
@@ -278,6 +281,7 @@ function ProjectBlocks({ onNavigate }: { onNavigate: (page: Page) => void }) {
             className="absolute left-0 right-0 cursor-pointer"
             style={{ top: proj.top, height: 200 }}
             onClick={() => {
+              if (proj.id === 1) onNavigate('prolog');
               if (proj.id === 3) onNavigate('iceland');
               if (proj.id === 2) onNavigate('tinypaws');
             }}
@@ -310,6 +314,7 @@ function ProjectBlocks({ onNavigate }: { onNavigate: (page: Page) => void }) {
             className="absolute right-[24px] size-[264px]"
             style={{ top: proj.top }}
             onClick={() => {
+              if (proj.id === 1) onNavigate('prolog');
               if (proj.id === 3) onNavigate('iceland');
               if (proj.id === 2) onNavigate('tinypaws');
             }}
@@ -392,6 +397,17 @@ export default function App() {
   if (currentPage === 'iceland') {
     return (
       <ProjectIceland
+        currentPage={currentPage}
+        language={language}
+        onNavigate={navigateTo}
+        onLanguageChange={(lang) => setLanguage(lang)}
+      />
+    );
+  }
+
+  if (currentPage === 'prolog') {
+    return (
+      <ProjectProLog
         currentPage={currentPage}
         language={language}
         onNavigate={navigateTo}

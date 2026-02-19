@@ -7,7 +7,12 @@ type ProjectHeaderProps = {
   role: string;
   reference?: string;
   category?: string;
-  link?: string;
+  link?: string | string[];
+  linkUrls?: Record<string, string>;
+  dividerHeight?: number;
+  roleLabel?: string;
+  titleUnderlineColor?: string;
+  titleUnderlineWidth?: number | string;
   description: string[];
 };
 
@@ -15,15 +20,38 @@ type ProjectHeaderProps = {
  * Reusable project hero/header block.
  * Layout: large title on left, meta columns below, description on right.
  */
-export default function ProjectHeader({ title, timeline, tools, role, reference, category, link, description }: ProjectHeaderProps) {
+export default function ProjectHeader({
+  title,
+  timeline,
+  tools,
+  role,
+  reference,
+  category,
+  link,
+  linkUrls,
+  dividerHeight = 200,
+  roleLabel = 'Project role',
+  titleUnderlineColor,
+  titleUnderlineWidth = 420,
+  description,
+}: ProjectHeaderProps) {
+  const linkItems = Array.isArray(link) ? link : link ? [link] : [];
+
   return (
     <section className="relative px-7 pt-48 pb-12 text-black-normal">
       <h1
-        className="type-title-1 mb-12 leading-[0.9] -ml-3"
+        className={`type-title-1 leading-[0.9] -ml-3 ${titleUnderlineColor ? 'mb-1' : 'mb-12'}`}
         style={{ fontSize: 160 }}
       >
         {title}
       </h1>
+      {titleUnderlineColor && (
+        <div
+          className="h-[3px] mb-12"
+          style={{ width: titleUnderlineWidth, backgroundColor: titleUnderlineColor }}
+          aria-hidden
+        />
+      )}
 
       <div className="grid gap-8 grid-cols-[220px_1px_220px_1fr] items-start">
         {/* Left meta column */}
@@ -39,7 +67,7 @@ export default function ProjectHeader({ title, timeline, tools, role, reference,
             <p className="m-0 type-body-lg text-black-normal">{timeline}</p>
           </div>
           <div>
-            <p className="m-0 type-category text-black-normal">Project role</p>
+            <p className="m-0 type-category text-black-normal">{roleLabel}</p>
             <p className="m-0 type-body-lg text-black-normal">{role}</p>
           </div>
           {reference && (
@@ -48,19 +76,35 @@ export default function ProjectHeader({ title, timeline, tools, role, reference,
               <p className="m-0 type-body-lg text-black-normal">{reference}</p>
             </div>
           )}
-          {link && (
+          {linkItems.length > 0 && (
             <div>
               <p className="m-0 type-category text-black-normal">Link</p>
-              <p className="m-0 type-body-lg text-black-normal">{link}</p>
+              {linkItems.map((item) => (
+                linkUrls?.[item] ? (
+                  <a
+                    key={item}
+                    href={linkUrls[item]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block m-0 type-body-lg text-black-normal leading-[1.35]"
+                  >
+                    {item}
+                  </a>
+                ) : (
+                  <p key={item} className="m-0 type-body-lg text-black-normal leading-[1.35]">
+                    {item}
+                  </p>
+                )
+              ))}
             </div>
           )}
         </div>
 
         {/* Divider */}
-        <div className="h-[200px] border-l border-black/60 translate-x-[-56px]" />
+        <div className="border-l border-black/60 translate-x-[-56px]" style={{ height: dividerHeight }} />
 
         {/* Tools column */}
-        <div className="text-[12px] leading-[1.6] -ml-16">
+        <div className="text-[12px] leading-[1.6] -ml-[73px]">
           {tools.map((tool) => (
             <p key={tool} className="m-0 type-body text-black-normal">
               {tool}

@@ -3,6 +3,7 @@ import Footer from './Footer';
 import { Language, Page } from '../types';
 import React, { useRef, useState, type CSSProperties } from 'react';
 import BestOfIcelandMockup5 from '../assets/projects/iceland/BestofIceland_mockup5.png';
+import PrologMockup from '../assets/projects/prolog/prolog_mockup1.png';
 import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
 
 type ProjectsPageProps = {
@@ -40,7 +41,7 @@ type ProjectRow = {
 
 const rows: ProjectRow[] = [
   { offset: 0, workType: 'App & Website', title: 'Individual Project', role: 'Independent', year: '2026' },
-  { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025' },
+  { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025', thumbnail: PrologMockup },
   { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', thumbnail: TinypawsMockup },
   { offset: 3, workType: 'Brochure', title: 'Best of Iceland', role: 'Independent', year: '2025', thumbnail: BestOfIcelandMockup5 },
   { offset: 4, workType: 'Package', title: 'Matcha Drinks', role: 'Independent', year: '2025' },
@@ -70,6 +71,7 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
   const activeThumbnail = rows.find((row) => row.offset === hoveredRow)?.thumbnail;
 
   const handleRowClick = (title: string) => {
+    if (title.includes('ProLog')) onNavigate('prolog');
     if (title.includes('Iceland')) onNavigate('iceland');
     if (title.includes('TinyPaws')) onNavigate('tinypaws');
   };
@@ -177,7 +179,7 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
 
             {rows.map((row) => {
               const top = getRowTop(row.offset);
-              const isInteractive = row.title.includes('Iceland') || row.title.includes('TinyPaws');
+              const isInteractive = row.title.includes('ProLog') || row.title.includes('Iceland') || row.title.includes('TinyPaws');
               const isActive = hoveredRow === row.offset;
 
               return (

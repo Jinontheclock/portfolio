@@ -18,7 +18,8 @@
     "vite": "6.3.5"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "npm run sync:prolog-app && vite",
+    "sync:prolog-app": "node scripts/sync-prolog-app.mjs",
+    "build": "npm run sync:prolog-app && vite build"
   }
 }
