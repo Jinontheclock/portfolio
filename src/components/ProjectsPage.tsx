@@ -5,6 +5,7 @@ import React, { useRef, useState, type CSSProperties } from 'react';
 import BestOfIcelandMockup5 from '../assets/projects/iceland/BestofIceland_mockup5.png';
 import PrologMockup from '../assets/projects/prolog/prolog_mockup1.png';
 import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
+import MujiThumbnail from '../assets/projects/muji/muji.jpeg';
 
 type ProjectsPageProps = {
   currentPage: Page;
@@ -47,7 +48,7 @@ const rows: ProjectRow[] = [
   { offset: 4, workType: 'Package', title: 'Matcha Drinks', role: 'Independent', year: '2025' },
   { offset: 5, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
   { offset: 6, workType: 'Poster', title: 'Ikea', role: 'Independent', year: '2025' },
-  { offset: 7, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024' },
+  { offset: 7, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024', thumbnail: MujiThumbnail },
 ];
 
 function getRowTop(offset: number) {
@@ -68,16 +69,19 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const frameRef = useRef<HTMLDivElement | null>(null);
-  const activeThumbnail = rows.find((row) => row.offset === hoveredRow)?.thumbnail;
+  const activeRow = rows.find((row) => row.offset === hoveredRow);
+  const activeThumbnail = activeRow?.thumbnail;
+  const isMujiHover = activeRow?.title.includes('MUJI') ?? false;
 
   const handleRowClick = (title: string) => {
     if (title.includes('ProLog')) onNavigate('prolog');
     if (title.includes('Iceland')) onNavigate('iceland');
     if (title.includes('TinyPaws')) onNavigate('tinypaws');
+    if (title.includes('MUJI')) onNavigate('muji');
   };
 
-  const thumbnailWidth = 360;
-  const thumbnailHeightEstimate = 500;
+  const thumbnailWidth = isMujiHover ? 240 : 360;
+  const thumbnailHeightEstimate = isMujiHover ? 333 : 500;
   const thumbOffsetX = 28;
   const thumbOffsetY = 24;
   const frameWidth = frameRef.current?.offsetWidth ?? 1440;
@@ -179,7 +183,11 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
 
             {rows.map((row) => {
               const top = getRowTop(row.offset);
-              const isInteractive = row.title.includes('ProLog') || row.title.includes('Iceland') || row.title.includes('TinyPaws');
+              const isInteractive =
+                row.title.includes('ProLog') ||
+                row.title.includes('Iceland') ||
+                row.title.includes('TinyPaws') ||
+                row.title.includes('MUJI');
               const isActive = hoveredRow === row.offset;
 
               return (

@@ -11,6 +11,7 @@ import AboutPage from "./components/AboutPage";
 import ProjectIceland from "./components/ProjectIceland";
 import ProjectProLog from "./components/ProjectProLog";
 import ProjectTinyPaws from "./components/ProjectTinyPaws";
+import ProjectMuji from "./components/ProjectMuji";
 import { Language, Page } from "./types";
 import RevealLine, { RevealHLine } from "./components/RevealLine";
 
@@ -180,6 +181,7 @@ const PAGE_PATHS: Record<Page, string> = {
   prolog: '/projects/prolog',
   iceland: '/projects/best-of-iceland',
   tinypaws: '/projects/tinypaws',
+  muji: '/projects/muji',
 };
 
 function normalizePath(pathname: string) {
@@ -195,6 +197,7 @@ function pageFromPath(pathname: string): Page {
   if (path === '/projects/prolog' || path === '/prolog') return 'prolog';
   if (path === '/projects/best-of-iceland' || path === '/iceland') return 'iceland';
   if (path === '/projects/tinypaws' || path === '/tinypaws') return 'tinypaws';
+  if (path === '/projects/muji' || path === '/muji') return 'muji';
 
   return 'home';
 }
@@ -419,6 +422,17 @@ export default function App() {
   if (currentPage === 'tinypaws') {
     return (
       <ProjectTinyPaws
+        currentPage={currentPage}
+        language={language}
+        onNavigate={navigateTo}
+        onLanguageChange={(lang) => setLanguage(lang)}
+      />
+    );
+  }
+
+  if (currentPage === 'muji') {
+    return (
+      <ProjectMuji
         currentPage={currentPage}
         language={language}
         onNavigate={navigateTo}

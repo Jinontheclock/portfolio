@@ -96,7 +96,11 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
   const languageButtonClass = (lang: Language) =>
     `cursor-pointer bg-transparent border-none leading-[normal] ${language === lang ? activeUnderline : ''}`;
   const isProjectsActive =
-    currentPage === 'projects' || currentPage === 'prolog' || currentPage === 'iceland' || currentPage === 'tinypaws';
+    currentPage === 'projects' ||
+    currentPage === 'prolog' ||
+    currentPage === 'iceland' ||
+    currentPage === 'tinypaws' ||
+    currentPage === 'muji';
 
   return (
     <header className="relative h-[96px]">
