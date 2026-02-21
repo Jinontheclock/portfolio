@@ -6,6 +6,7 @@ import BestOfIcelandMockup5 from '../assets/projects/iceland/BestofIceland_mocku
 import PrologMockup from '../assets/projects/prolog/prolog_mockup1.png';
 import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
 import MujiThumbnail from '../assets/projects/muji/muji.jpeg';
+import ArchiveHouseResult2 from '../assets/projects/archivehouse/archivehouse_result2.png';
 
 type ProjectsPageProps = {
   currentPage: Page;
@@ -45,10 +46,11 @@ const rows: ProjectRow[] = [
   { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025', thumbnail: PrologMockup },
   { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', thumbnail: TinypawsMockup },
   { offset: 3, workType: 'Brochure', title: 'Best of Iceland', role: 'Independent', year: '2025', thumbnail: BestOfIcelandMockup5 },
-  { offset: 4, workType: 'Package', title: 'Matcha Drinks', role: 'Independent', year: '2025' },
-  { offset: 5, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
-  { offset: 6, workType: 'Poster', title: 'Ikea', role: 'Independent', year: '2025' },
-  { offset: 7, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024', thumbnail: MujiThumbnail },
+  { offset: 4, workType: 'Poster', title: 'Archive House', role: 'Independent', year: '2025', thumbnail: ArchiveHouseResult2 },
+  { offset: 5, workType: 'Poster', title: 'Archive of Veilance', role: 'Independent', year: '2025' },
+  { offset: 6, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
+  { offset: 7, workType: 'Poster', title: 'Ikea', role: 'Independent', year: '2025' },
+  { offset: 8, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024', thumbnail: MujiThumbnail },
 ];
 
 function getRowTop(offset: number) {
@@ -78,6 +80,8 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
     if (title.includes('Iceland')) onNavigate('iceland');
     if (title.includes('TinyPaws')) onNavigate('tinypaws');
     if (title.includes('MUJI')) onNavigate('muji');
+    if (title.includes('Archive House')) onNavigate('archivehouse');
+    if (title.includes('Archive of Veilance')) onNavigate('archiveofveliance');
   };
 
   const thumbnailWidth = isMujiHover ? 240 : 360;
@@ -187,7 +191,9 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
                 row.title.includes('ProLog') ||
                 row.title.includes('Iceland') ||
                 row.title.includes('TinyPaws') ||
-                row.title.includes('MUJI');
+                row.title.includes('MUJI') ||
+                row.title.includes('Archive House') ||
+                row.title.includes('Archive of Veilance');
               const isActive = hoveredRow === row.offset;
 
               return (

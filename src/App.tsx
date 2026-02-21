@@ -12,6 +12,8 @@ import ProjectIceland from "./components/ProjectIceland";
 import ProjectProLog from "./components/ProjectProLog";
 import ProjectTinyPaws from "./components/ProjectTinyPaws";
 import ProjectMuji from "./components/ProjectMuji";
+import ProjectArchiveHouse from "./components/ProjectArchiveHouse";
+import ProjectArchiveOfVeilance from "./components/ProjectArchiveOfVeilance";
 import { Language, Page } from "./types";
 import RevealLine, { RevealHLine } from "./components/RevealLine";
 
@@ -182,6 +184,8 @@ const PAGE_PATHS: Record<Page, string> = {
   iceland: '/projects/best-of-iceland',
   tinypaws: '/projects/tinypaws',
   muji: '/projects/muji',
+  archivehouse: '/projects/archive-house',
+  archiveofveliance: '/projects/archive-of-veliance',
 };
 
 function normalizePath(pathname: string) {
@@ -198,6 +202,8 @@ function pageFromPath(pathname: string): Page {
   if (path === '/projects/best-of-iceland' || path === '/iceland') return 'iceland';
   if (path === '/projects/tinypaws' || path === '/tinypaws') return 'tinypaws';
   if (path === '/projects/muji' || path === '/muji') return 'muji';
+  if (path === '/projects/archive-house' || path === '/archive-house') return 'archivehouse';
+  if (path === '/projects/archive-of-veliance' || path === '/archive-of-veliance') return 'archiveofveliance';
 
   return 'home';
 }
@@ -433,6 +439,28 @@ export default function App() {
   if (currentPage === 'muji') {
     return (
       <ProjectMuji
+        currentPage={currentPage}
+        language={language}
+        onNavigate={navigateTo}
+        onLanguageChange={(lang) => setLanguage(lang)}
+      />
+    );
+  }
+
+  if (currentPage === 'archivehouse') {
+    return (
+      <ProjectArchiveHouse
+        currentPage={currentPage}
+        language={language}
+        onNavigate={navigateTo}
+        onLanguageChange={(lang) => setLanguage(lang)}
+      />
+    );
+  }
+
+  if (currentPage === 'archiveofveliance') {
+    return (
+      <ProjectArchiveOfVeilance
         currentPage={currentPage}
         language={language}
         onNavigate={navigateTo}

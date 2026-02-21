@@ -6,6 +6,7 @@ type ProjectHeaderProps = {
   tools: string[];
   role: string;
   reference?: string;
+  referenceLabel?: string;
   category?: string;
   link?: string | string[];
   linkUrls?: Record<string, string>;
@@ -13,6 +14,7 @@ type ProjectHeaderProps = {
   roleLabel?: string;
   titleUnderlineColor?: string;
   titleUnderlineWidth?: number | string;
+  titleFontSize?: number;
   description: string[];
 };
 
@@ -26,6 +28,7 @@ export default function ProjectHeader({
   tools,
   role,
   reference,
+  referenceLabel = 'Reference',
   category,
   link,
   linkUrls,
@@ -33,6 +36,7 @@ export default function ProjectHeader({
   roleLabel = 'Project role',
   titleUnderlineColor,
   titleUnderlineWidth = 420,
+  titleFontSize = 160,
   description,
 }: ProjectHeaderProps) {
   const linkItems = Array.isArray(link) ? link : link ? [link] : [];
@@ -41,7 +45,7 @@ export default function ProjectHeader({
     <section className="relative px-7 pt-48 pb-12 text-black-normal">
       <h1
         className={`type-title-1 leading-[0.9] -ml-3 ${titleUnderlineColor ? 'mb-1' : 'mb-12'}`}
-        style={{ fontSize: 160 }}
+        style={{ fontSize: titleFontSize }}
       >
         {title}
       </h1>
@@ -72,7 +76,7 @@ export default function ProjectHeader({
           </div>
           {reference && (
             <div>
-              <p className="m-0 type-category text-black-normal">Reference</p>
+              <p className="m-0 type-category text-black-normal">{referenceLabel}</p>
               <p className="m-0 type-body-lg text-black-normal">{reference}</p>
             </div>
           )}
