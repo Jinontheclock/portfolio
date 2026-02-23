@@ -7,6 +7,7 @@ import PrologMockup from '../assets/projects/prolog/prolog_mockup1.png';
 import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
 import MujiThumbnail from '../assets/projects/muji/muji.jpeg';
 import ArchiveHouseResult2 from '../assets/projects/archivehouse/archivehouse_result2.png';
+import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.png';
 
 type ProjectsPageProps = {
   currentPage: Page;
@@ -47,7 +48,7 @@ const rows: ProjectRow[] = [
   { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', thumbnail: TinypawsMockup },
   { offset: 3, workType: 'Brochure', title: 'Best of Iceland', role: 'Independent', year: '2025', thumbnail: BestOfIcelandMockup5 },
   { offset: 4, workType: 'Poster', title: 'Archive House', role: 'Independent', year: '2025', thumbnail: ArchiveHouseResult2 },
-  { offset: 5, workType: 'Poster', title: 'Archive of Veilance', role: 'Independent', year: '2025' },
+  { offset: 5, workType: 'Poster', title: 'Archive of Veilance', role: 'Independent', year: '2025', thumbnail: VeilanceResult2 },
   { offset: 6, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
   { offset: 7, workType: 'Poster', title: 'Ikea', role: 'Independent', year: '2025' },
   { offset: 8, workType: 'Promotional Material', title: 'MUJI', role: 'VMD', year: '2024', thumbnail: MujiThumbnail },
@@ -74,6 +75,8 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
   const activeRow = rows.find((row) => row.offset === hoveredRow);
   const activeThumbnail = activeRow?.thumbnail;
   const isMujiHover = activeRow?.title.includes('MUJI') ?? false;
+  const isArchiveHover =
+    activeRow?.title.includes('Archive House') || activeRow?.title.includes('Archive of Veilance');
 
   const handleRowClick = (title: string) => {
     if (title.includes('ProLog')) onNavigate('prolog');
@@ -84,8 +87,8 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
     if (title.includes('Archive of Veilance')) onNavigate('archiveofveliance');
   };
 
-  const thumbnailWidth = isMujiHover ? 240 : 360;
-  const thumbnailHeightEstimate = isMujiHover ? 333 : 500;
+  const thumbnailWidth = isMujiHover ? 240 : isArchiveHover ? 252 : 360;
+  const thumbnailHeightEstimate = isMujiHover ? 333 : isArchiveHover ? 350 : 500;
   const thumbOffsetX = 28;
   const thumbOffsetY = 24;
   const frameWidth = frameRef.current?.offsetWidth ?? 1440;

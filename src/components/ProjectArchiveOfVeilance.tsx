@@ -4,6 +4,15 @@ import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
 import VeilanceBanner from '../assets/projects/archiveofveilance/veilance_banner.webp';
+import VeilanceResult1 from '../assets/projects/archiveofveilance/veilance_result1.png';
+import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.png';
+import VeilanceResult3 from '../assets/projects/archiveofveilance/veilance_result3.png';
+import VeilanceEn1 from '../assets/projects/archiveofveilance/veilance_en1.png';
+import VeilanceEn2 from '../assets/projects/archiveofveilance/veilance_en2.png';
+import VeilanceKr1 from '../assets/projects/archiveofveilance/veilance_kr1.png';
+import VeilanceKr2 from '../assets/projects/archiveofveilance/veilance_kr2.png';
+import VeilanceJp1 from '../assets/projects/archiveofveilance/veilance_jp1.png';
+import VeilanceJp2 from '../assets/projects/archiveofveilance/veilance_jp2.png';
 
 type Props = {
   currentPage: Page;
@@ -15,6 +24,7 @@ type Props = {
 
 const MOOD_BOARD_FIGMA_URL = 'https://www.figma.com/design/1H8FYTkzKkDBKAPR01a5Wb/Archive-of-Veilance?node-id=1-2&t=unjbvFlGCW8CsnyK-1';
 const MOOD_BOARD_EMBED_URL = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(MOOD_BOARD_FIGMA_URL)}`;
+const VEILANCE_MOCKUP_IMAGES = [VeilanceEn1, VeilanceEn2, VeilanceKr1, VeilanceKr2, VeilanceJp1, VeilanceJp2];
 
 type VeilanceTypographyRow = {
   label: string;
@@ -134,7 +144,7 @@ const veilanceTypographyGroups: Array<{ language: string; rows: VeilanceTypograp
 export default function ProjectArchiveOfVeilance({ currentPage, language, onNavigate, onLanguageChange }: Props) {
   return (
     <div className="layout-viewport hide-scrollbar bg-grey-normal">
-      <div className="layout-canvas" style={{ "--layout-base-height": "6200px" } as CSSProperties}>
+      <div className="layout-canvas" style={{ "--layout-base-height": "5200px" } as CSSProperties}>
         <div className="layout-canvas-inner">
           <div className="relative" style={{ minHeight: "var(--layout-base-height)" } as CSSProperties}>
             <Header currentPage={currentPage} language={language} onNavigate={onNavigate} onLanguageChange={onLanguageChange} />
@@ -238,11 +248,61 @@ export default function ProjectArchiveOfVeilance({ currentPage, language, onNavi
                     <div>
                       <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Orginal View</p>
                     </div>
+                    <div className="grid grid-cols-3 gap-6 max-w-[1180px]">
+                      <div className="grid gap-2">
+                        <img
+                          src={VeilanceResult1}
+                          alt="Archive of Veilance result English"
+                          className="w-full h-auto block"
+                        />
+                        <p className="m-0 text-[12px] leading-[1.3] text-black-normal">English</p>
+                      </div>
+                      <div className="grid gap-2">
+                        <img
+                          src={VeilanceResult2}
+                          alt="Archive of Veilance result Korean"
+                          className="w-full h-auto block"
+                        />
+                        <p className="m-0 text-[12px] leading-[1.3] text-black-normal">Korean</p>
+                      </div>
+                      <div className="grid gap-2">
+                        <img
+                          src={VeilanceResult3}
+                          alt="Archive of Veilance result Japanese"
+                          className="w-full h-auto block"
+                        />
+                        <p className="m-0 text-[12px] leading-[1.3] text-black-normal">Japanese</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="type-heading-3 text-black-normal m-0 leading-[1.3]">Mockup</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 max-w-[1180px]">
+                      {VEILANCE_MOCKUP_IMAGES.map((imageSrc, index) => (
+                        index < 2 ? (
+                          <div key={imageSrc} className="w-full aspect-[10/7] overflow-hidden">
+                            <img
+                              src={imageSrc}
+                              alt={`Archive of Veilance mockup ${index + 1}`}
+                              className="w-full h-full object-cover block"
+                              style={index === 0 ? { objectPosition: 'center 68%' } : undefined}
+                            />
+                          </div>
+                        ) : (
+                          <img
+                            key={imageSrc}
+                            src={imageSrc}
+                            alt={`Archive of Veilance mockup ${index + 1}`}
+                            className="w-full h-auto block"
+                          />
+                        )
+                      ))}
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <Footer onNavigate={onNavigate} top={5900} />
+              <Footer onNavigate={onNavigate} top={4900} />
             </div>
           </div>
         </div>
