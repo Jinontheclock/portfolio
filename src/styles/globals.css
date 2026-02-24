@@ -803,7 +803,7 @@ body::-webkit-scrollbar {
   --layout-width: min(1920px, 100vw);
   --layout-base-gap: 0px;
   --layout-top: 0px;
-  --layout-gutter: 8px; /* 좌우 여백 고정 */
+  --layout-gutter: 0px; /* 좌우 여백 제거 */
   /* 뷰포트-여백 너비와 베이스 폭 비율로 스케일 결정 (확대/축소 모두 허용) */
   --layout-scale: clamp(
     0.15,
@@ -832,6 +832,28 @@ body::-webkit-scrollbar {
   min-height: calc(var(--layout-base-height, 100vh) * var(--layout-scale));
   position: relative;
   overflow: visible;
+}
+
+.home-vanta-birds-clip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(var(--home-vanta-base-height, 720px) * var(--layout-scale));
+  overflow: hidden;
+}
+
+.home-vanta-birds {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-vanta-birds canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .layout-canvas-inner {

@@ -3,7 +3,7 @@ import imgTinypawsMockup from "./assets/projects/tinypaws/tinypaws_mockup.png";
 import imgIcelandMockup4 from "./assets/projects/iceland/BestofIceland_mockup4.png";
 import imgImg26161 from "./assets/home/about/hajin_homepage_about.png";
 import imgArrow from "./assets/common/arrow.png";
-import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProjectsPage from "./components/ProjectsPage";
@@ -17,6 +17,49 @@ import ProjectArchiveOfVeilance from "./components/ProjectArchiveOfVeilance";
 import ProjectMatchaLatte from "./components/ProjectMatchaLatte";
 import { Language, Page } from "./types";
 import RevealLine, { RevealHLine } from "./components/RevealLine";
+
+declare global {
+  interface Window {
+    VANTA?: {
+      BIRDS?: (options: Record<string, unknown>) => { destroy?: () => void };
+    };
+    THREE?: unknown;
+  }
+}
+
+const THREE_SCRIPT_ID = "three-r134-min-js";
+const THREE_SCRIPT_SRC = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
+const VANTA_SCRIPT_ID = "vanta-birds-min-js";
+const VANTA_SCRIPT_SRC = "https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js";
+
+function loadExternalScript(id: string, src: string) {
+  return new Promise<void>((resolve, reject) => {
+    const existingScript = document.getElementById(id) as HTMLScriptElement | null;
+
+    if (existingScript) {
+      if (existingScript.dataset.loaded === "true") {
+        resolve();
+        return;
+      }
+
+      existingScript.addEventListener("load", () => resolve(), { once: true });
+      existingScript.addEventListener("error", () => reject(new Error(`Failed to load ${src}`)), { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = id;
+    script.src = src;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      script.dataset.loaded = "true";
+      resolve();
+    };
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+}
 
 function Group() {
   return (
@@ -38,6 +81,7 @@ const HERO_POS = {
 const HOME_LAYOUT_BASE_HEIGHT = 3850;
 const HOME_FOOTER_OFFSET = 290;
 const HOME_FOOTER_TOP = HOME_LAYOUT_BASE_HEIGHT - HOME_FOOTER_OFFSET;
+const HOME_VANTA_BASE_HEIGHT = 720;
 
 type InspirationItem = {
   img: string;
@@ -356,6 +400,9 @@ function ProjectBlocks({ onNavigate }: { onNavigate: (page: Page) => void }) {
 
 export default function App() {
   const heroRoles = ['UI/UX', 'PRODUCT', 'GRAPHIC'] as const;
+  const homeBackgroundClipRef = useRef<HTMLDivElement | null>(null);
+  const homeBackgroundRef = useRef<HTMLDivElement | null>(null);
+  const vantaEffectRef = useRef<{ destroy?: () => void } | null>(null);
   const [currentPage, setCurrentPage] = useState<Page>(() => {
     if (typeof window === 'undefined') return 'home';
     return pageFromPath(window.location.pathname);
@@ -399,6 +446,112 @@ export default function App() {
     window.addEventListener('popstate', syncFromLocation);
     return () => window.removeEventListener('popstate', syncFromLocation);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (currentPage !== "home") {
+      if (vantaEffectRef.current?.destroy) {
+        vantaEffectRef.current.destroy();
+      }
+      vantaEffectRef.current = null;
+      return;
+    }
+
+    let cancelled = false;
+
+    const forwardPointerToVanta = (clientX: number, clientY: number) => {
+      const clipEl = homeBackgroundClipRef.current;
+      const backgroundEl = homeBackgroundRef.current;
+      if (!clipEl || !backgroundEl) return;
+
+      const rect = clipEl.getBoundingClientRect();
+      const isWithinClip =
+        clientX >= rect.left &&
+        clientX <= rect.right &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom;
+
+      if (!isWithinClip) return;
+
+      backgroundEl.dispatchEvent(
+        new MouseEvent("mousemove", {
+          clientX,
+          clientY,
+          view: window,
+        }),
+      );
+    };
+
+    const onWindowMouseMove = (event: MouseEvent) => {
+      forwardPointerToVanta(event.clientX, event.clientY);
+    };
+
+    const onWindowTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      forwardPointerToVanta(touch.clientX, touch.clientY);
+    };
+
+    const setupBirds = async () => {
+      try {
+        if (!window.THREE) {
+          await loadExternalScript(THREE_SCRIPT_ID, THREE_SCRIPT_SRC);
+        }
+
+        if (!window.VANTA?.BIRDS) {
+          await loadExternalScript(VANTA_SCRIPT_ID, VANTA_SCRIPT_SRC);
+        }
+
+        if (cancelled || !homeBackgroundRef.current || !window.VANTA?.BIRDS) {
+          return;
+        }
+
+        if (vantaEffectRef.current?.destroy) {
+          vantaEffectRef.current.destroy();
+        }
+
+        vantaEffectRef.current = window.VANTA.BIRDS({
+          el: homeBackgroundRef.current,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          backgroundColor: 0xf3f3f2,
+          backgroundAlpha: 1,
+          colorMode: "varianceGradient",
+          color1: 0x000000,
+          color2: 0x000000,
+          birdSize: 1.0,
+          wingSpan: 30.0,
+          speedLimit: 5.0,
+          separation: 20.0,
+          alignment: 20.0,
+          cohesion: 10.0,
+          quantity: 4.0,
+        });
+      } catch (error) {
+        console.error("Failed to initialize Vanta Birds effect", error);
+      }
+    };
+
+    window.addEventListener("mousemove", onWindowMouseMove, { passive: true });
+    window.addEventListener("touchmove", onWindowTouchMove, { passive: true });
+    setupBirds();
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("mousemove", onWindowMouseMove);
+      window.removeEventListener("touchmove", onWindowTouchMove);
+      if (vantaEffectRef.current?.destroy) {
+        vantaEffectRef.current.destroy();
+      }
+      vantaEffectRef.current = null;
+    };
+  }, [currentPage]);
 
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
@@ -516,6 +669,14 @@ export default function App() {
   return (
     <div className="layout-viewport hide-scrollbar">
       <div className="layout-canvas" style={{ "--layout-base-height": `${HOME_LAYOUT_BASE_HEIGHT}px` } as CSSProperties}>
+        <div
+          ref={homeBackgroundClipRef}
+          className="home-vanta-birds-clip"
+          style={{ ["--home-vanta-base-height" as string]: `${HOME_VANTA_BASE_HEIGHT}px` } as CSSProperties}
+          aria-hidden="true"
+        >
+          <div ref={homeBackgroundRef} className="home-vanta-birds" />
+        </div>
         <div className="layout-canvas-inner">
           <div
             className="relative"
