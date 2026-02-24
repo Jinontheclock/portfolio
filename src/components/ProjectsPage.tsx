@@ -8,6 +8,7 @@ import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
 import MujiThumbnail from '../assets/projects/muji/muji.jpeg';
 import ArchiveHouseResult2 from '../assets/projects/archivehouse/archivehouse_result2.png';
 import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.png';
+import MatchaMockup4 from '../assets/projects/matcha/matcha_mockup4.png';
 
 type ProjectsPageProps = {
   currentPage: Page;
@@ -42,6 +43,7 @@ type ProjectRow = {
   title: string;
   role: string;
   year: string;
+  hidden?: boolean;
   page?: Page;
   thumbnail?: string;
   hoverThumbnailWidth?: number;
@@ -49,7 +51,7 @@ type ProjectRow = {
 };
 
 const rows: ProjectRow[] = [
-  { offset: 0, workType: 'App & Website', title: 'Individual Project', role: 'Independent', year: '2026' },
+  { offset: 0, workType: 'App & Website', title: 'Individual Project', role: 'Independent', year: '2026', hidden: true },
   { offset: 1, workType: 'App', title: 'ProLog', role: 'UI Developer', year: '2025', page: 'prolog', thumbnail: PrologMockup },
   { offset: 2, workType: 'Website', title: 'TinyPaws', role: 'UI/UX Designer', year: '2025', page: 'tinypaws', thumbnail: TinypawsMockup },
   { offset: 3, workType: 'Brochure', title: 'Best of Iceland', role: 'Independent', year: '2025', page: 'iceland', thumbnail: BestOfIcelandMockup5 },
@@ -75,8 +77,8 @@ const rows: ProjectRow[] = [
     hoverThumbnailWidth: 252,
     hoverThumbnailHeight: 350,
   },
-  { offset: 6, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025' },
-  { offset: 7, workType: 'Package', title: 'Matcha Latte', role: 'Independent', year: '2024', page: 'matchalatte' },
+  { offset: 6, workType: 'Motion', title: 'StarLink', role: 'Independent', year: '2025', hidden: true },
+  { offset: 7, workType: 'Package', title: 'Matcha Latte', role: 'Independent', year: '2024', page: 'matchalatte', thumbnail: MatchaMockup4 },
   {
     offset: 8,
     workType: 'Promotional Material',
@@ -89,19 +91,23 @@ const rows: ProjectRow[] = [
     hoverThumbnailHeight: 333,
   },
 ];
+const HIDDEN_ROW_OFFSETS = rows.filter((row) => row.hidden).map((row) => row.offset);
 
 function getRowTop(offset: number) {
+  const hiddenRowsBefore = HIDDEN_ROW_OFFSETS.filter((hiddenOffset) => hiddenOffset < offset).length;
+
   if (offset <= FIRST_CATEGORY_LAST_OFFSET) {
-    return ROW_START + offset * ROW_GAP_WITHIN_CATEGORY;
+    return ROW_START + offset * ROW_GAP_WITHIN_CATEGORY - hiddenRowsBefore * ROW_GAP_WITHIN_CATEGORY;
   }
 
   const firstCategoryCount = FIRST_CATEGORY_LAST_OFFSET + 1;
-  return (
+  const baseTop = (
     ROW_START +
     FIRST_CATEGORY_LAST_OFFSET * ROW_GAP_WITHIN_CATEGORY +
     ROW_GAP_BETWEEN_CATEGORIES +
     (offset - firstCategoryCount) * ROW_GAP_WITHIN_CATEGORY
   );
+  return baseTop - hiddenRowsBefore * ROW_GAP_WITHIN_CATEGORY;
 }
 
 export default function ProjectsPage({ currentPage, language, onNavigate, onLanguageChange }: ProjectsPageProps) {
@@ -216,7 +222,7 @@ export default function ProjectsPage({ currentPage, language, onNavigate, onLang
               </div>
             )}
 
-            {rows.map((row) => {
+            {rows.filter((row) => !row.hidden).map((row) => {
               const top = getRowTop(row.offset);
               const isInteractive = Boolean(row.page);
               const isActive = hoveredRow === row.offset;
