@@ -2,13 +2,13 @@ import Header from './Header';
 import Footer from './Footer';
 import { Language, Page } from '../types';
 import React, { useRef, useState, type CSSProperties, type ReactNode } from 'react';
-import BestOfIcelandMockup5 from '../assets/projects/iceland/BestofIceland_mockup5.png';
-import PrologMockup from '../assets/projects/prolog/prolog_mockup1.png';
-import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.png';
-import MujiThumbnail from '../assets/projects/muji/muji.jpeg';
-import ArchiveHouseResult2 from '../assets/projects/archivehouse/archivehouse_result2.png';
-import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.png';
-import MatchaMockup4 from '../assets/projects/matcha/matcha_mockup4.png';
+import BestOfIcelandMockup5 from '../assets/projects/iceland/BestofIceland_mockup5.webp';
+import PrologMockup from '../assets/projects/prolog/prolog_mockup1.webp';
+import TinypawsMockup from '../assets/projects/tinypaws/tinypaws_mockup.webp';
+import MujiThumbnail from '../assets/projects/muji/muji.webp';
+import ArchiveHouseResult2 from '../assets/projects/archivehouse/archivehouse_result2.webp';
+import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.webp';
+import MatchaMockup4 from '../assets/projects/matcha/matcha_mockup4.webp';
 
 type ProjectsPageProps = {
   currentPage: Page;

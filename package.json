@@ -6,9 +6,12 @@
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
     "@vercel/analytics": "^1.6.1",
+    "fs-extra": "^11.3.3",
+    "glob": "^13.0.6",
     "pdfjs-dist": "^3.4.120",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

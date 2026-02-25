@@ -4,15 +4,15 @@ import Footer from './Footer';
 import ProjectHeader from './ProjectHeader';
 import { Language, Page } from '../types';
 import VeilanceBanner from '../assets/projects/archiveofveilance/veilance_banner.webp';
-import VeilanceResult1 from '../assets/projects/archiveofveilance/veilance_result1.png';
-import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.png';
-import VeilanceResult3 from '../assets/projects/archiveofveilance/veilance_result3.png';
-import VeilanceEn1 from '../assets/projects/archiveofveilance/veilance_en1.png';
-import VeilanceEn2 from '../assets/projects/archiveofveilance/veilance_en2.png';
-import VeilanceKr1 from '../assets/projects/archiveofveilance/veilance_kr1.png';
-import VeilanceKr2 from '../assets/projects/archiveofveilance/veilance_kr2.png';
-import VeilanceJp1 from '../assets/projects/archiveofveilance/veilance_jp1.png';
-import VeilanceJp2 from '../assets/projects/archiveofveilance/veilance_jp2.png';
+import VeilanceResult1 from '../assets/projects/archiveofveilance/veilance_result1.webp';
+import VeilanceResult2 from '../assets/projects/archiveofveilance/veilance_result2.webp';
+import VeilanceResult3 from '../assets/projects/archiveofveilance/veilance_result3.webp';
+import VeilanceEn1 from '../assets/projects/archiveofveilance/veilance_en1.webp';
+import VeilanceEn2 from '../assets/projects/archiveofveilance/veilance_en2.webp';
+import VeilanceKr1 from '../assets/projects/archiveofveilance/veilance_kr1.webp';
+import VeilanceKr2 from '../assets/projects/archiveofveilance/veilance_kr2.webp';
+import VeilanceJp1 from '../assets/projects/archiveofveilance/veilance_jp1.webp';
+import VeilanceJp2 from '../assets/projects/archiveofveilance/veilance_jp2.webp';
 
 type Props = {
   currentPage: Page;

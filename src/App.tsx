@@ -1,8 +1,8 @@
-import imgPrologMockup1 from "./assets/projects/prolog/prolog_mockup1.png";
-import imgTinypawsMockup from "./assets/projects/tinypaws/tinypaws_mockup.png";
-import imgIcelandMockup4 from "./assets/projects/iceland/BestofIceland_mockup4.png";
-import imgImg26161 from "./assets/home/about/hajin_homepage_about.png";
-import imgArrow from "./assets/common/arrow.png";
+import imgPrologMockup1 from "./assets/projects/prolog/prolog_mockup1.webp";
+import imgTinypawsMockup from "./assets/projects/tinypaws/tinypaws_mockup.webp";
+import imgIcelandMockup4 from "./assets/projects/iceland/BestofIceland_mockup4.webp";
+import imgImg26161 from "./assets/home/about/hajin_homepage_about.webp";
+import imgArrow from "./assets/common/arrow.webp";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -106,20 +106,20 @@ const inspirationSources = Object.entries(inspirationModules)
   .sort((a, b) => a.filename.localeCompare(b.filename));
 
 const INSPIRATION_FILENAME_ORDER = [
-  "apple.png",
-  "Bauhaus.png",
-  "dieterRams.png",
-  "donaldJudd.png",
-  "ghibli.png",
-  "helvetica.png",
-  "paf.png",
-  "ReiKawakubo.png",
-  "RickOwens.png",
-  "sakamotoRyuichi.png",
-  "spacex.png",
-  "tadaoando.png",
-  "VirgilAbloh.png",
-  "WesAnderson.png",
+  "apple.webp",
+  "Bauhaus.webp",
+  "dieterRams.webp",
+  "donaldJudd.webp",
+  "ghibli.webp",
+  "helvetica.webp",
+  "paf.webp",
+  "ReiKawakubo.webp",
+  "RickOwens.webp",
+  "sakamotoRyuichi.webp",
+  "spacex.webp",
+  "tadaoando.webp",
+  "VirgilAbloh.webp",
+  "WesAnderson.webp",
 ] as const;
 
 const inspirationSourceMap = new Map(inspirationSources.map((item) => [item.filename, item]));

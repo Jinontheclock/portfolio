@@ -11,8 +11,6 @@ Becuase my portfolio is desigend based on Minimal style with simple lines and gr
 Key Concepts:
 Fly birds on the homepage, and avoiding mouse cursor.
 
-![idea](./assets/idea.png)
-
 Resources
 https://github.com/tengbao/vanta
 https://www.vantajs.com/?effect=clouds2
