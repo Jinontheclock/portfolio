@@ -732,7 +732,7 @@ export default function App() {
             <span className="type-heading-2 leading-[1.2]">Projects</span>
           </span>
         </button>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[1402px] w-[916px] whitespace-pre-wrap">A selection of highlighted projects showcasing recent work across UX/UI, web, and visual design.</p>
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[1402px] w-[916px] whitespace-pre-wrap">A selection of highlighted projects</p>
         <button
           onClick={() => navigateTo('about')}
           className="absolute left-[24px] top-[2592px] cursor-pointer bg-transparent border-none p-0 home-projects-cta"
