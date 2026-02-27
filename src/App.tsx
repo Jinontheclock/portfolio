@@ -78,7 +78,7 @@ const HERO_POS = {
   subtitle: { left: 727, top: 484 },
 };
 
-const HOME_LAYOUT_BASE_HEIGHT = 3850;
+const HOME_LAYOUT_BASE_HEIGHT = 3690;
 const HOME_FOOTER_OFFSET = 290;
 const HOME_FOOTER_TOP = HOME_LAYOUT_BASE_HEIGHT - HOME_FOOTER_OFFSET;
 const HOME_VANTA_BASE_HEIGHT = 720;
@@ -198,7 +198,7 @@ type ProjectEntry = {
 const PROJECTS: ProjectEntry[] = [
   {
     id: 1,
-    top: 1680,
+    top: 1480,
     title: 'ProLog',
     desc: ['Skilled trades apprenticeship app', 'for progress tracking'],
     skills: ['Product design', 'Mobile UX/UI design', 'Interface development'],
@@ -207,7 +207,7 @@ const PROJECTS: ProjectEntry[] = [
   },
   {
     id: 2,
-    top: 1992,
+    top: 1792,
     title: 'TinyPaws',
     desc: ['Cat adoption website', 'for a rescue nonprofit'],
     skills: ['Product design', 'WordPress Web design', 'Brand identity'],
@@ -216,7 +216,7 @@ const PROJECTS: ProjectEntry[] = [
   },
   {
     id: 3,
-    top: 2304,
+    top: 2104,
     title: 'Best of Iceland',
     desc: ['G Adventure itinerary', 'redesigned as a magazine'],
     skills: ['Editorial design', 'Visual storytelling', 'Print-ready composition'],
@@ -336,7 +336,7 @@ function ProjectBlocks({ onNavigate }: { onNavigate: (page: Page) => void }) {
   return (
     <>
       {PROJECTS.map((proj) => (
-        <div key={proj.id} className="group">
+        <div key={proj.id} className="group home-project-row">
           <div
             className="absolute left-0 right-0 cursor-pointer"
             style={{ top: proj.top, height: 200 }}
@@ -346,13 +346,18 @@ function ProjectBlocks({ onNavigate }: { onNavigate: (page: Page) => void }) {
               if (proj.id === 2) onNavigate('tinypaws');
             }}
           >
-            <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] transition-colors duration-200 group-hover:text-[#256EFF]">
-              ({proj.id})
+            <p
+              className="absolute home-project-hover-block m-0 font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-[18px]"
+              style={{ width: 'calc(12.5% - 35px)' }}
+            >
+              <span>({proj.id})</span>
             </p>
-            <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(37.5%-9px)] right-[calc(37.5%+15px)] not-italic text-black-normal text-[0px] transition-colors duration-200 group-hover:text-[#256EFF]">
-              <p className="type-heading-3 mb-0">{proj.title}</p>
+            <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(37.5%-9px)] right-[calc(37.5%+23px)] not-italic text-black-normal text-[0px]">
+              <p className="type-heading-3 mb-0 home-project-hover-block">
+                <span>{proj.title}</span>
+              </p>
               {proj.desc.map((line) => (
-                <p key={line} className="text-[18px] mb-0">
+                <p key={line} className="text-[18px] mb-0 px-[8px]">
                   {line}
                 </p>
               ))}
@@ -523,15 +528,15 @@ export default function App() {
           backgroundColor: 0xf3f3f2,
           backgroundAlpha: 1,
           colorMode: "varianceGradient",
-          color1: 0x000000,
-          color2: 0x000000,
+          color1: 0x212222,
+          color2: 0x212222,
           birdSize: 1.0,
-          wingSpan: 30.0,
+          wingSpan: 20.0,
           speedLimit: 5.0,
           separation: 20.0,
-          alignment: 20.0,
-          cohesion: 10.0,
-          quantity: 4.0,
+          alignment: 10.0,
+          cohesion: 15.0,
+          quantity: 3.0,
         });
       } catch (error) {
         console.error("Failed to initialize Vanta Birds effect", error);
@@ -664,7 +669,7 @@ export default function App() {
     );
   }
 
-  const projectSeparators = [1656, 1968, 2280, 2592];
+  const projectSeparators = [1456, 1768, 2080, 2392];
 
   return (
     <div className="layout-viewport hide-scrollbar">
@@ -715,24 +720,30 @@ export default function App() {
           </div>
         </div>
         
-        {/* Removed arrow icon as requested */}
-        
         <button
           onClick={() => navigateTo('projects')}
-          className="absolute left-[24px] top-[1560px] flex items-center gap-[12px] cursor-pointer bg-transparent border-none p-0"
+          className="absolute left-[24px] top-[1400px] cursor-pointer bg-transparent border-none p-0 home-projects-cta"
           aria-label="Go to Projects"
         >
-          <p className="type-heading-2 text-black-normal m-0 leading-[1.2]">Projects</p>
-          <img src={imgArrow} alt="" className="w-6 h-6 object-contain translate-y-[2px]" />
+          <span className="home-projects-cta-text nav-underline home-projects-cta-underline text-black-normal">
+            <span className="home-projects-more font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-[18px]">
+              more
+            </span>
+            <span className="type-heading-2 leading-[1.2]">Projects</span>
+          </span>
         </button>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[1571px] w-[916px] whitespace-pre-wrap">A selection of highlighted projects showcasing recent work across UX/UI, web, and visual design.</p>
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[1402px] w-[916px] whitespace-pre-wrap">A selection of highlighted projects showcasing recent work across UX/UI, web, and visual design.</p>
         <button
           onClick={() => navigateTo('about')}
-          className="absolute left-[24px] top-[2784px] flex items-center gap-[12px] cursor-pointer bg-transparent border-none p-0"
+          className="absolute left-[24px] top-[2592px] cursor-pointer bg-transparent border-none p-0 home-projects-cta"
           aria-label="Go to About"
         >
-          <p className="type-heading-2 text-black-normal m-0 leading-[1.2]">About</p>
-          <img src={imgArrow} alt="" className="w-6 h-6 object-contain translate-y-[2px]" />
+          <span className="home-projects-cta-text nav-underline home-projects-cta-underline text-black-normal">
+            <span className="home-projects-more font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-[18px]">
+              more
+            </span>
+            <span className="type-heading-2 leading-[1.2]">About</span>
+          </span>
         </button>
         {/* Project 1 group */}
         <ProjectBlocks onNavigate={navigateTo} />
@@ -748,27 +759,27 @@ export default function App() {
         ))}
         <RevealLine
           height={192}
-          className="left-[calc(75%-17px)] top-[2904px]"
+          className="left-[calc(75%-17px)] top-[2712px]"
           color="var(--color-black-normal)"
           delayMs={80}
         />
-        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[2784px] w-[531px] whitespace-pre-wrap">
+        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] left-[calc(25%+18px)] not-italic text-black-normal text-[18px] top-[2592px] w-[531px] whitespace-pre-wrap">
           <p className="mb-0">Grounded in visual clarity and practical usability,</p>
           <p className="mb-0">design is approached as a way to simplify digital experiences.</p>
           <p className="mb-0">Each interface is shaped with structure and intention,</p>
           <p>keeping both users and real-world execution in mind.</p>
         </div>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[24px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2904px] w-[483px] whitespace-pre-wrap">UX/UI Design for Digital Products</p>
-        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[3048px] w-[483px] whitespace-pre-wrap">
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[24px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2712px] w-[483px] whitespace-pre-wrap">UX/UI Design for Digital Products</p>
+        <div className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2856px] w-[483px] whitespace-pre-wrap">
           <p className="mb-0">Front-End Development</p>
           <p>{`& AI-Assisted Prototyping`}</p>
         </div>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2952px] w-[483px] whitespace-pre-wrap">{`Graphic Design & Layout Composition`}</p>
-        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[3000px] w-[483px] whitespace-pre-wrap">{`Brand Identity & Visual Systems`}</p>
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2760px] w-[483px] whitespace-pre-wrap">{`Graphic Design & Layout Composition`}</p>
+        <p className="absolute font-['Plus_Jakarta_Sans',sans-serif] h-[37px] leading-[normal] left-[calc(75%-6px)] not-italic text-black-normal text-[18px] top-[2808px] w-[483px] whitespace-pre-wrap">{`Brand Identity & Visual Systems`}</p>
         <img
           alt=""
           src={imgImg26161}
-          className="absolute left-[24px] top-[2904px] grayscale pointer-events-none"
+          className="absolute left-[24px] top-[2712px] grayscale pointer-events-none"
           style={{ transform: 'scale(0.56)', transformOrigin: 'top left' }}
         />
         <InspirationLines />

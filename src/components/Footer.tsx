@@ -10,7 +10,7 @@ type FooterProps = {
 };
 
 const textButton =
-  "absolute -translate-x-full font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-black-normal text-[16px] text-right bg-transparent border-none cursor-pointer";
+  "footer-nav-link absolute -translate-x-full font-['Plus_Jakarta_Sans',sans-serif] leading-[normal] not-italic text-black-normal text-[16px] text-right bg-transparent border-none cursor-pointer";
 
 const GAP = 96; // distance from top line to nav text AND from copyright to bottom for symmetry
 const COPYRIGHT_TOP = 180;
@@ -52,7 +52,7 @@ export default function Footer({ onNavigate, onArchiveClick = () => {}, top = 35
         className={textButton}
         style={{ ...offset(GAP), left: PROJECT_LEFT }}
       >
-        Projects
+        <span className="nav-underline">Projects</span>
       </button>
 
       <button
@@ -61,7 +61,7 @@ export default function Footer({ onNavigate, onArchiveClick = () => {}, top = 35
         className={textButton}
         style={{ ...offset(GAP + 24), left: ABOUT_LEFT }}
       >
-        About
+        <span className="nav-underline">About</span>
       </button>
 
       <button
@@ -71,7 +71,7 @@ export default function Footer({ onNavigate, onArchiveClick = () => {}, top = 35
         style={{ ...offset(GAP), left: LINKEDIN_LEFT }}
         aria-label="Open LinkedIn profile (new tab)"
       >
-        LinkedIn
+        <span className="nav-underline">LinkedIn</span>
       </button>
 
       <button
@@ -81,7 +81,7 @@ export default function Footer({ onNavigate, onArchiveClick = () => {}, top = 35
         style={{ ...offset(GAP + 24), left: GITHUB_LEFT }}
         aria-label="Open GitHub profile (new tab)"
       >
-        GitHub
+        <span className="nav-underline">GitHub</span>
       </button>
 
       <button
@@ -90,7 +90,7 @@ export default function Footer({ onNavigate, onArchiveClick = () => {}, top = 35
         className={textButton}
         style={{ ...offset(GAP + 48), left: ARCHIVE_LEFT }}
       >
-        Archive
+        <span className="nav-underline">Archive</span>
       </button>
 
       <RevealLine

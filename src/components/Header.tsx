@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { createPortal } from 'react-dom';
 import imgLogoGif from '../assets/common/hajin_icon.gif';
 import { Language, Page } from '../types';
 
@@ -18,6 +19,9 @@ const navBase =
 const activeUnderline = 'underline [text-decoration-skip-ink:none] decoration-solid';
 
 export default function Header({ currentPage, language, onNavigate, onLanguageChange }: HeaderProps) {
+  const anchorRef = useRef<HTMLDivElement | null>(null);
+  const [portalStyle, setPortalStyle] = useState<CSSProperties | null>(null);
+  const [isEntryOverlayActive, setIsEntryOverlayActive] = useState<boolean>(false);
   const [staticSrc, setStaticSrc] = useState<string>(imgLogoGif); // first frame
   const [lastFrameSrc, setLastFrameSrc] = useState<string>(imgLogoGif); // will be updated
   const [logoSrc, setLogoSrc] = useState<string>(imgLogoGif);
@@ -93,8 +97,97 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
     []
   );
 
+  useEffect(() => {
+    if (currentPage === 'home') {
+      setIsEntryOverlayActive(false);
+      return;
+    }
+
+    setIsEntryOverlayActive(true);
+    const timerId = window.setTimeout(() => {
+      setIsEntryOverlayActive(false);
+    }, 1500);
+
+    return () => {
+      window.clearTimeout(timerId);
+    };
+  }, [currentPage]);
+
+  useLayoutEffect(() => {
+    const anchorEl = anchorRef.current;
+    if (!anchorEl) return;
+
+    const viewportEl = anchorEl.closest('.layout-viewport') as HTMLElement | null;
+    const canvasInnerEl = anchorEl.closest('.layout-canvas-inner') as HTMLElement | null;
+    if (!viewportEl || !canvasInnerEl) return;
+
+    const resolvePositiveNumber = (raw: string, fallback: number) => {
+      const parsed = Number.parseFloat(raw.trim());
+      return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+    };
+
+    const readCanvasScale = () => {
+      const transform = getComputedStyle(canvasInnerEl).transform;
+      if (transform && transform !== 'none') {
+        if (transform.startsWith('matrix3d(')) {
+          const values = transform
+            .slice(9, -1)
+            .split(',')
+            .map((value) => Number.parseFloat(value.trim()));
+          if (values.length >= 2 && Number.isFinite(values[0]) && Number.isFinite(values[1])) {
+            return Math.hypot(values[0], values[1]);
+          }
+        } else if (transform.startsWith('matrix(')) {
+          const values = transform
+            .slice(7, -1)
+            .split(',')
+            .map((value) => Number.parseFloat(value.trim()));
+          if (values.length >= 2 && Number.isFinite(values[0]) && Number.isFinite(values[1])) {
+            return Math.hypot(values[0], values[1]);
+          }
+        }
+      }
+
+      const rect = canvasInnerEl.getBoundingClientRect();
+      if (canvasInnerEl.offsetWidth > 0) {
+        return rect.width / canvasInnerEl.offsetWidth;
+      }
+      return 1;
+    };
+
+    const updatePortalStyle = () => {
+      const viewportRect = viewportEl.getBoundingClientRect();
+      const canvasInnerRect = canvasInnerEl.getBoundingClientRect();
+      const viewportStyles = getComputedStyle(viewportEl);
+      const baseWidth =
+        canvasInnerEl.offsetWidth ||
+        resolvePositiveNumber(viewportStyles.getPropertyValue('--layout-base-width'), 1440);
+      const scale = readCanvasScale();
+      const padTop = Number.parseFloat(viewportStyles.paddingTop) || 0;
+      const borderTop = Number.parseFloat(viewportStyles.borderTopWidth) || 0;
+
+      setPortalStyle({
+        position: 'fixed',
+        left: `${canvasInnerRect.left}px`,
+        top: `${viewportRect.top + borderTop + padTop}px`,
+        width: `${baseWidth}px`,
+        height: '96px',
+        transform: `scale(${scale})`,
+        transformOrigin: 'top left',
+        zIndex: 220,
+      });
+    };
+
+    updatePortalStyle();
+    window.addEventListener('resize', updatePortalStyle, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', updatePortalStyle);
+    };
+  }, [currentPage]);
+
   const languageButtonClass = (lang: Language) =>
-    `cursor-pointer bg-transparent border-none leading-[normal] ${language === lang ? activeUnderline : ''}`;
+    `cursor-pointer bg-transparent border-none leading-[16px] text-black-normal ${language === lang ? activeUnderline : ''}`;
   const isProjectsActive =
     currentPage === 'projects' ||
     currentPage === 'prolog' ||
@@ -105,8 +198,22 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
     currentPage === 'archiveofveliance' ||
     currentPage === 'matchalatte';
 
-  return (
+  const headerContent = (
     <header className="relative h-[96px]">
+      <div
+        aria-hidden
+        className="absolute pointer-events-none z-[1]"
+        style={{
+          left: `calc(${NAV_LEFT_BASE} - 4px)`,
+          right: '24px',
+          top: `${NAV_TOP - 4}px`,
+          height: '28px',
+          background: 'rgba(243, 243, 242, 0.34)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+        }}
+      />
+
       <button
         onClick={handleLogoClick}
         className="absolute left-[24px] size-[48px] top-[24px] cursor-pointer z-10"
@@ -133,19 +240,39 @@ export default function Header({ currentPage, language, onNavigate, onLanguageCh
         <span className={`nav-underline ${currentPage === 'about' ? 'is-active' : ''}`}>About</span>
       </button>
 
-      <div className="absolute top-[24px] right-[24px] flex items-center gap-[6px] text-[10px] whitespace-nowrap z-10">
+      <div className="absolute top-[25px] right-[32px] h-[16px] flex items-center gap-[4px] text-[10px] whitespace-nowrap z-10">
         <button onClick={() => onLanguageChange('EN')} className={languageButtonClass('EN')}>
           EN
         </button>
-        <span className="leading-[normal]">|</span>
+        <span className="leading-[16px] text-black-normal">|</span>
         <button onClick={() => onLanguageChange('JP')} className={languageButtonClass('JP')}>
           JP
         </button>
-        <span className="leading-[normal]">|</span>
+        <span className="leading-[16px] text-black-normal">|</span>
         <button onClick={() => onLanguageChange('KR')} className={languageButtonClass('KR')}>
           KR
         </button>
       </div>
     </header>
+  );
+
+  return (
+    <>
+      <div ref={anchorRef} className="h-[96px]" aria-hidden />
+      {portalStyle
+        ? createPortal(
+            <div
+              style={{
+                ...portalStyle,
+                opacity: isEntryOverlayActive ? 0 : 1,
+                pointerEvents: isEntryOverlayActive ? 'none' : 'auto',
+              }}
+            >
+              {headerContent}
+            </div>,
+            document.body
+          )
+        : null}
+    </>
   );
 }
